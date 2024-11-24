@@ -20,7 +20,7 @@ BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
 BOARD_VENDOR := sony
 
-COMMON_PATH := device/sony/sm8550-common
+COMMON_PATH := device/sony/sm8450-common
 
 # A/B
 AB_OTA_UPDATER := true
@@ -28,25 +28,30 @@ AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
-    init_boot \
     product \
     system \
-    system_dlkm \
     system_ext \
     vbmeta \
     vbmeta_system \
     odm \
     recovery \
     vendor \
-    vendor_dlkm \
-    vendor_boot
+    vendor_boot \
+    vendor_dlkm
 
 # Architecture
 TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv9-a
+TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_VARIANT := generic
 TARGET_CPU_VARIANT_RUNTIME := kryo300
+
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv8-2a
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := generic
+TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a75
 
 # Boot
 BOARD_BOOT_HEADER_VERSION := 4
@@ -55,12 +60,16 @@ BOARD_RAMDISK_USE_LZ4 := true
 
 # DTB
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
-TARGET_NEEDS_DTBOIMAGE := true
-TARGET_MERGE_DTBS_WILDCARD ?= kalama*base
+# TODO: partially added in commit with dtbo building
+#   https://github.com/LineageOS/android_device_sony_sm8550-common/commit/c7c327186b7a0a654851053b0ca5122e9a85d23c
+#BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
+#TARGET_NEEDS_DTBOIMAGE := true
+# TODO: limit dtbs inclusion
+#   https://github.com/LineageOS/android_device_sony_sm8550-common/commit/c4c8891f4c3130a7bd2faaa7e7045b85cfce9c04
+#TARGET_MERGE_DTBS_WILDCARD ?= taro*base
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := kalama
+TARGET_BOOTLOADER_BOARD_NAME := taro
 TARGET_NO_BOOTLOADER := true
 
 # Init Boot
@@ -69,7 +78,8 @@ BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 
 # Kernel
 BOARD_KERNEL_CMDLINE += video=vfb:640x400,bpp=32,memsize=3072000
-BOARD_KERNEL_CMDLINE += nosoftlockup
+# removed: not in pdx223
+# BOARD_KERNEL_CMDLINE += nosoftlockup
 BOARD_BOOTCONFIG := \
     androidboot.hardware=qcom \
     androidboot.memcg=1 \
@@ -78,66 +88,61 @@ BOARD_BOOTCONFIG := \
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_KERNEL_IMAGE_NAME := Image
 
-TARGET_KERNEL_SOURCE := kernel/sony/sm8550
-TARGET_KERNEL_CONFIG := \
-    gki_defconfig \
-    vendor/kalama_GKI.config \
-    vendor/sony/kalama_GKI.config \
-    vendor/debugfs.config
+# TODO: using binary kernel, add when compiling
+#TARGET_KERNEL_SOURCE := kernel/sony/sm8450
+#TARGET_KERNEL_CONFIG := \
+#    gki_defconfig \
+#    vendor/taro_GKI.config \
+#    vendor/sony/taro_GKI.config \
+#    vendor/debugfs.config
 
-BOARD_SYSTEM_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.system_dlkm))
-BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(COMMON_PATH)/modules.blocklist
-BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE)
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.vendor_boot))
-BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
-BOOT_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery $(COMMON_PATH)/modules.include.vendor_ramdisk))
-SYSTEM_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.include.system_dlkm))
+# TODO: using binary kernel, add when compiling
+# BOARD_SYSTEM_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.system_dlkm))
+# BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(COMMON_PATH)/modules.blocklist
+# BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load))
+# BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE)
+# BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.vendor_boot))
+# BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
+# BOOT_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery $(COMMON_PATH)/modules.include.vendor_ramdisk))
+# SYSTEM_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.include.system_dlkm))
 
+# TODO: using binary kernel, add when compiling
 # Kernel Modules
-TARGET_KERNEL_EXT_MODULE_ROOT := kernel/sony/sm8550-modules
-TARGET_KERNEL_EXT_MODULES := \
-    qcom/opensource/mmrm-driver \
-    qcom/opensource/mm-drivers/hw_fence \
-    qcom/opensource/mm-drivers/msm_ext_display \
-    qcom/opensource/mm-drivers/sync_fence \
-    qcom/opensource/audio-kernel \
-    qcom/opensource/camera-kernel \
-    qcom/opensource/dataipa/drivers/platform/msm \
-    qcom/opensource/datarmnet/core \
-    qcom/opensource/datarmnet-ext/aps \
-    qcom/opensource/datarmnet-ext/offload \
-    qcom/opensource/datarmnet-ext/shs \
-    qcom/opensource/datarmnet-ext/perf \
-    qcom/opensource/datarmnet-ext/perf_tether \
-    qcom/opensource/datarmnet-ext/sch \
-    qcom/opensource/datarmnet-ext/wlan \
-    qcom/opensource/securemsm-kernel \
-    qcom/opensource/display-drivers/msm \
-    qcom/opensource/eva-kernel \
-    qcom/opensource/video-driver \
-    qcom/opensource/graphics-kernel \
-    qcom/opensource/wlan/platform \
-    qcom/opensource/wlan/qcacld-3.0/.kiwi_v2 \
-    qcom/opensource/bt-kernel \
-    nxp/opensource/driver \
-    cirrus/kernel-modules/cs35l45/sound/soc/codecs \
-    cirrus/kernel-modules/cs40l25/drivers/misc \
-    cirrus/kernel-modules/cs40l25/sound/soc/codecs \
-    semc/hardware/camera-kernel-module/camera_sync \
-    semc/hardware/camera-kernel-module/hdmi_detect \
-    semc/hardware/camera-kernel-module/slg51000_regulator \
-    semc/hardware/camera-kernel-module/sony_camera \
-    semc/hardware/charge/kernel-modules/battchg_ext \
-    semc/hardware/charge/kernel-modules/battman_dbg \
-    semc/hardware/kernel-modules/misc/et6xx \
-    semc/hardware/kernel-modules/misc/ldo_vibrator \
-    semc/hardware/kernel-modules/msm/lxs_ts
+# TARGET_KERNEL_EXT_MODULE_ROOT := kernel/sony/sm8450-modules
+# TARGET_KERNEL_EXT_MODULES := \
+#     qcom/opensource/mmrm-driver \
+#     qcom/opensource/mm-drivers/hw_fence \
+#     qcom/opensource/mm-drivers/msm_ext_display \
+#     qcom/opensource/mm-drivers/sync_fence \
+#     qcom/opensource/audio-kernel \
+#     qcom/opensource/camera-kernel \
+#     qcom/opensource/dataipa/drivers/platform/msm \
+#     qcom/opensource/datarmnet/core \
+#     qcom/opensource/datarmnet-ext/aps \
+#     qcom/opensource/datarmnet-ext/offload \
+#     qcom/opensource/datarmnet-ext/shs \
+#     qcom/opensource/datarmnet-ext/perf \
+#     qcom/opensource/datarmnet-ext/perf_tether \
+#     qcom/opensource/datarmnet-ext/sch \
+#     qcom/opensource/datarmnet-ext/wlan \
+#     qcom/opensource/securemsm-kernel \
+#     qcom/opensource/display-drivers/msm \
+#     qcom/opensource/eva-kernel \
+#     qcom/opensource/video-driver \
+#     qcom/opensource/graphics-kernel \
+#     qcom/opensource/wlan/platform \
+#     qcom/opensource/wlan/qcacld-3.0/.kiwi_v2 \
+#     qcom/opensource/bt-kernel \
+#     nxp/opensource/driver \
+#     sony/sony_camera \
+#     sony/lxs_ts
 
 # Platform
-TARGET_BOARD_PLATFORM := kalama
+TARGET_BOARD_PLATFORM := taro
 
 # Qcom
 BOARD_USES_QCOM_HARDWARE := true
@@ -145,9 +150,14 @@ BOARD_USES_QCOM_HARDWARE := true
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
 
+# TODO: check what applies here. right now commits below are enabled
+#  https://github.com/LineageOS/android_device_sony_sm8550-common/commit/8254a8a064ac446889401457c1bb841fcd370050
+#  https://github.com/LineageOS/android_device_sony_sm8550-common/commit/e4ccebd9b7d5b68ed14c16969a8bf1ba11b23e8c
+
 # Audio
 AUDIO_FEATURE_ENABLED_DLKM := true
-AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT := true
+# TODO: enabled in kalama, not sure about taro
+# AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT := true
 AUDIO_FEATURE_ENABLED_GEF_SUPPORT := true
 AUDIO_FEATURE_ENABLED_GKI := true
 AUDIO_FEATURE_ENABLED_INSTANCE_ID := true
@@ -160,7 +170,6 @@ AUDIO_FEATURE_ENABLED_SVA_MULTI_STAGE := true
 BOARD_SUPPORTS_OPENSOURCE_STHAL := true
 BOARD_SUPPORTS_SOUND_TRIGGER := true
 BOARD_USES_ALSA_AUDIO := true
-TARGET_PROVIDES_AUDIO_HAL := true
 TARGET_USES_QCOM_MM_AUDIO := true
 
 # Filesystem
@@ -180,12 +189,11 @@ DEVICE_FRAMEWORK_MANIFEST_FILE += $(COMMON_PATH)/framework_manifest.xml
 DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE := \
     $(COMMON_PATH)/manifest.xml \
-    $(COMMON_PATH)/network_manifest.xml \
-    hardware/qcom-caf/sm8550/audio/primary-hal/configs/common/manifest_non_qmaa.xml \
-    hardware/qcom-caf/sm8550/audio/primary-hal/configs/common/manifest_non_qmaa_extn.xml
+    $(COMMON_PATH)/network_manifest.xml
 
-# Lineage Touch HAL
-$(call soong_config_set,sony_touch,panel,lxs_ts)
+# TODO: trying without as in sm8350
+## Lineage Touch HAL
+#$(call soong_config_set,sony_touch,panel,lxs_ts)
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
@@ -193,22 +201,21 @@ BOARD_USES_METADATA_PARTITION := true
 # Partitions
 BOARD_PRODUCTIMAGE_MINIMAL_PARTITION_RESERVED_SIZE := false
 -include vendor/lineage/config/BoardConfigReservedSize.mk
-BOARD_BOOTIMAGE_PARTITION_SIZE := 100663296
+BOARD_BOOTIMAGE_PARTITION_SIZE := 0x06000000
 BOARD_DTBOIMG_PARTITION_SIZE := 25165824
-BOARD_INIT_BOOT_IMAGE_PARTITION_SIZE := 8388608
-BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 100663296
+BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 0x6000000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 104857600
-# Reserve space for data encryption (231519965184-16384)
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 231519948800
-BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := erofs
+# userdata defined for each device separately as it is different for
+# pdx223 and pdx224
+BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_SYSTEM_DLKMIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
-BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := erofs
-BOARD_SOMC_DYNAMIC_PARTITIONS_PARTITION_LIST := product system system_dlkm vendor odm system_ext vendor_dlkm
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_SOMC_DYNAMIC_PARTITIONS_PARTITION_LIST := product system vendor odm system_ext vendor_dlkm
 # Dynamic partition size = Super partition size - 4MB
+# looks to have the same size in nagara
 BOARD_SOMC_DYNAMIC_PARTITIONS_SIZE := 14491320320
 BOARD_SUPER_PARTITION_GROUPS := somc_dynamic_partitions
 BOARD_SUPER_PARTITION_SIZE := 14495514624
@@ -216,7 +223,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
-TARGET_COPY_OUT_SYSTEM_DLKM := system_dlkm
 TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 
@@ -253,42 +259,53 @@ VENDOR_SECURITY_PATCH := $(BOOT_SECURITY_PATCH)
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 include hardware/sony/sepolicy/qti/SEPolicy.mk
 
+## Based on config for sm8350
 # Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
-BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
-
-BOARD_AVB_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
-BOARD_AVB_BOOT_ALGORITHM := SHA256_RSA4096
-BOARD_AVB_BOOT_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
-BOARD_AVB_BOOT_ROLLBACK_INDEX_LOCATION := 3
-
-BOARD_AVB_INIT_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
-BOARD_AVB_INIT_BOOT_ALGORITHM := SHA256_RSA4096
-BOARD_AVB_INIT_BOOT_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
-BOARD_AVB_INIT_BOOT_ROLLBACK_INDEX_LOCATION := 4
-
-BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
-BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
-BOARD_AVB_RECOVERY_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
-BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
-
-BOARD_AVB_VBMETA_SYSTEM := system system_dlkm system_ext product
-BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
-BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA4096
+BOARD_AVB_VBMETA_SYSTEM := system system_ext product
+BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
+BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
 
-BOARD_AVB_VENDOR_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
-BOARD_AVB_VENDOR_BOOT_ALGORITHM := SHA256_RSA4096
-BOARD_AVB_VENDOR_BOOT_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
-BOARD_AVB_VENDOR_BOOT_ROLLBACK_INDEX_LOCATION := 6
+# Below config for sm8550
+# # Verified Boot
+# BOARD_AVB_ENABLE := true
+# BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
+# BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 
-# Use sha256 hash algorithm for odm system_dlkm vendor_dlkm vendor partition
-BOARD_AVB_ODM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
-BOARD_AVB_SYSTEM_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
-BOARD_AVB_VENDOR_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
-BOARD_AVB_VENDOR_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
+# BOARD_AVB_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+# BOARD_AVB_BOOT_ALGORITHM := SHA256_RSA4096
+# BOARD_AVB_BOOT_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+# BOARD_AVB_BOOT_ROLLBACK_INDEX_LOCATION := 3
+
+# BOARD_AVB_INIT_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+# BOARD_AVB_INIT_BOOT_ALGORITHM := SHA256_RSA4096
+# BOARD_AVB_INIT_BOOT_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+# BOARD_AVB_INIT_BOOT_ROLLBACK_INDEX_LOCATION := 4
+
+# BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+# BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
+# BOARD_AVB_RECOVERY_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+# BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
+
+# BOARD_AVB_VBMETA_SYSTEM := system system_dlkm system_ext product
+# BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+# BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA4096
+# BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+# BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
+
+# BOARD_AVB_VENDOR_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+# BOARD_AVB_VENDOR_BOOT_ALGORITHM := SHA256_RSA4096
+# BOARD_AVB_VENDOR_BOOT_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+# BOARD_AVB_VENDOR_BOOT_ROLLBACK_INDEX_LOCATION := 6
+
+# # Use sha256 hash algorithm for odm system_dlkm vendor_dlkm vendor partition
+# BOARD_AVB_ODM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
+# BOARD_AVB_SYSTEM_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
+# BOARD_AVB_VENDOR_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
+# BOARD_AVB_VENDOR_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
 # WiFi
 BOARD_WLAN_DEVICE := qcwcn
@@ -305,4 +322,4 @@ WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
--include vendor/sony/sm8550-common/BoardConfigVendor.mk
+-include vendor/sony/sm8450-common/BoardConfigVendor.mk
