@@ -91,6 +91,15 @@ function blob_fixup() {
             [ "$2" = "" ] && return 0
             sed -i "s/android.media.audio.common.types-V2-cpp.so/android.media.audio.common.types-V3-cpp.so/" "${2}"
             ;;
+    vendor/lib/libiVptApi.so | vendor/lib64/libiVptApi.so)
+        [ "$2" = "" ] && return 0
+        grep -q "libiVptLibC.so" "${2}" || "${PATCHELF}" --add-needed "libiVptLibC.so" "${2}"
+        ;;
+    vendor/lib/libiVptLibC.so | vendor/lib64/libiVptLibC.so)
+        [ "$2" = "" ] && return 0
+        grep -q "libcrypto.so" "${2}" || "${PATCHELF}" --add-needed "libcrypto.so" "${2}"
+        grep -q "libiVptHkiDec.so" "${2}" || "${PATCHELF}" --add-needed "libiVptHkiDec.so" "${2}"
+        ;;
         *)
             return 1
             ;;
