@@ -871,8 +871,7 @@ vendor/etc/init/mlog_qmi_service.rc
 vendor/etc/public.libraries.txt
 
 # Neural networks
-odm/lib64/qnn/libQnnHtp.so;MODULE_SUFFIX=_odm
-odm/lib64/qnn/libQnnHtpV73Stub.so;MODULE_SUFFIX=_odm
+vendor/lib64/QNN/libQnnHtpAltPrepV69Stub.so
 
 # NFC
 vendor/lib64/vendor.somc.hardware.nfc@1.0.so
@@ -1055,7 +1054,6 @@ system_ext/framework/qcrilhook.jar
 system_ext/priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 vendor/bin/hw/qcrilNrd
 vendor/bin/ks
-vendor/bin/qms;DISABLE_CHECKELF
 vendor/bin/qtigetprop
 vendor/bin/qtisetprop
 vendor/etc/init/qcrilNrd.rc
