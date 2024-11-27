@@ -51,6 +51,7 @@ function lib_to_package_fixup_vendor_variants() {
             vendor.qti.hardware.data.iwlan@1.0 | \
             vendor.qti.hardware.data.qmi@1.0 | \
             com.qualcomm.qti.dpm.api@1.0 | \
+            libvibrator | \
             vendor.qti.hardware.dpmservice@1.0 | \
             vendor.qti.diaghal@1.0 | \
             vendor.qti.imsrtpservice@3.0 | \
