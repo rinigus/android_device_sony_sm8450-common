@@ -47,7 +47,7 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio-impl \
     android.hardware.soundtrigger@2.3-impl \
     audio.bluetooth.default \
-    audio.primary.kalama \
+    audio.primary.taro \
     audio.r_submix.default \
     audio.usb.default \
     audioadsprpcd \
@@ -61,28 +61,26 @@ PRODUCT_PACKAGES += \
     libsndcardparser \
     libtinycompress \
     libvolumelistener \
-    sound_trigger.primary.kalama
+    sound_trigger.primary.taro
 
 AUDIO_HAL_DIR := hardware/qcom-caf/sm8450/audio/primary-hal
 
 PRODUCT_COPY_FILES += \
     $(AUDIO_HAL_DIR)/configs/common/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
-    $(AUDIO_HAL_DIR)/configs/kalama/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/audio_effects.conf \
-    $(LOCAL_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/audio_effects.xml \
+    $(AUDIO_HAL_DIR)/configs/taro/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_taro/audio_effects.conf \
+    $(LOCAL_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_taro/audio_effects.xml \
     $(LOCAL_PATH)/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/audio_policy_configuration.xml \
     $(LOCAL_PATH)/audio/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
     $(LOCAL_PATH)/audio/card-defs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/card-defs.xml \
     $(LOCAL_PATH)/audio/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml \
     $(LOCAL_PATH)/audio/microphone_characteristics.xml:$(TARGET_COPY_OUT_VENDOR)/etc/microphone_characteristics.xml \
-    $(LOCAL_PATH)/audio/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/mixer_paths_kalama_cdp.xml \
-    $(LOCAL_PATH)/audio/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/mixer_paths_kalama_grd.xml \
-    $(LOCAL_PATH)/audio/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/mixer_paths_kalama_mtp.xml \
-    $(LOCAL_PATH)/audio/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/mixer_paths_kalama_qrd.xml \
-    $(LOCAL_PATH)/audio/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/mixer_paths_kalama_cdp_wsa883x.xml \
-    $(LOCAL_PATH)/audio/resourcemanager.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/resourcemanager_kalama_cdp.xml \
-    $(LOCAL_PATH)/audio/resourcemanager.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/resourcemanager_kalama_grd.xml \
-    $(LOCAL_PATH)/audio/resourcemanager.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/resourcemanager_kalama_mtp.xml \
-    $(LOCAL_PATH)/audio/resourcemanager.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/resourcemanager_kalama_qrd.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_waipio_cdp.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_taro/mixer_paths_waipio_cdp.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_waipio_mtp.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_taro/mixer_paths_waipio_mtp.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_waipio_qrd.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_taro/mixer_paths_waipio_qrd.xml \
+    $(LOCAL_PATH)/audio/resourcemanager_upd.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_taro/resourcemanager_upd.xml \
+    $(LOCAL_PATH)/audio/resourcemanager_waipio_cdp.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_taro/resourcemanager_waipio_cdp.xml \
+    $(LOCAL_PATH)/audio/resourcemanager_waipio_mtp.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_taro/resourcemanager_waipio_mtp.xml \
+    $(LOCAL_PATH)/audio/resourcemanager_waipio_qrd.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_taro/resourcemanager_waipio_qrd.xml \
     $(LOCAL_PATH)/audio/usecaseKvManager.xml:$(TARGET_COPY_OUT_ODM)/etc/usecaseKvManager.xml \
     $(LOCAL_PATH)/audio/usecaseKvManager.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usecaseKvManager.xml
 
@@ -125,7 +123,7 @@ PRODUCT_PACKAGES += \
     libexif.vendor \
     libutilscallstack.vendor \
     libyuv.vendor \
-    vendor.qti.hardware.camera.aon@1.3.vendor \
+    vendor.qti.hardware.camera.aon@1.0.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
 
 PRODUCT_COPY_FILES += \
@@ -271,7 +269,6 @@ PRODUCT_PACKAGES += \
     fstab.zram \
     init.class_main.sh \
     init.kernel.post_boot.sh \
-    init.kernel.post_boot-kalama.sh \
     init.qcom.early_boot.sh \
     init.qcom.msim.sh \
     init.qcom.rc \
@@ -314,10 +311,10 @@ PRODUCT_COPY_FILES += \
     $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.base-arm64.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.base-arm64.policy \
     $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.ext-arm.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.ext-arm.policy \
     $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.ext-arm64.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.ext-arm64.policy \
-    $(LOCAL_PATH)/media/media_codecs_performance_kalama_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_kalama.xml \
-    $(LOCAL_PATH)/media/media_codecs_performance_kalama_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_kalama_vendor.xml \
-    $(LOCAL_PATH)/media/media_codecs_kalama_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_kalama.xml \
-    $(LOCAL_PATH)/media/media_codecs_kalama_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_kalama_vendor.xml
+    $(LOCAL_PATH)/media/media_codecs_performance_taro_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_taro.xml \
+    $(LOCAL_PATH)/media/media_codecs_performance_taro_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_taro_vendor.xml \
+    $(LOCAL_PATH)/media/media_codecs_taro_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_taro.xml \
+    $(LOCAL_PATH)/media/media_codecs_taro_vendor.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_taro_vendor.xml
 
 PRODUCT_PACKAGES += \
     libavservices_minijail \
@@ -385,7 +382,7 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.perf@2.3.vendor
 
 PRODUCT_COPY_FILES += \
-    vendor/qcom/opensource/power/config/kalama/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
+    vendor/qcom/opensource/power/config/taro/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 
 # PowerShare
 PRODUCT_PACKAGES += \
@@ -440,15 +437,15 @@ PRODUCT_PACKAGES += \
     sensors.dynamic_sensor_hal
 
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_kalama/android.hardware.sensor.accelerometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.barometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_kalama/android.hardware.sensor.barometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.compass.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_kalama/android.hardware.sensor.compass.xml \
-    frameworks/native/data/etc/android.hardware.sensor.dynamic.head_tracker.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_kalama/android.hardware.sensor.dynamic.head_tracker.xml \
-    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_kalama/android.hardware.sensor.gyroscope.xml \
-    frameworks/native/data/etc/android.hardware.sensor.light.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_kalama/android.hardware.sensor.light.xml \
-    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_kalama/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_kalama/android.hardware.sensor.stepcounter.xml \
-    frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_kalama/android.hardware.sensor.stepdetector.xml
+    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_taro/android.hardware.sensor.accelerometer.xml \
+    frameworks/native/data/etc/android.hardware.sensor.barometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_taro/android.hardware.sensor.barometer.xml \
+    frameworks/native/data/etc/android.hardware.sensor.compass.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_taro/android.hardware.sensor.compass.xml \
+    frameworks/native/data/etc/android.hardware.sensor.dynamic.head_tracker.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_taro/android.hardware.sensor.dynamic.head_tracker.xml \
+    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_taro/android.hardware.sensor.gyroscope.xml \
+    frameworks/native/data/etc/android.hardware.sensor.light.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_taro/android.hardware.sensor.light.xml \
+    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_taro/android.hardware.sensor.proximity.xml \
+    frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_taro/android.hardware.sensor.stepcounter.xml \
+    frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_taro/android.hardware.sensor.stepdetector.xml
 
 # Shim
 PRODUCT_PACKAGES += \

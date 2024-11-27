@@ -101,9 +101,3 @@ sh_binary {
     src: "init.kernel.post_boot.sh",
     vendor: true,
 }
-
-sh_binary {
-    name: "init.kernel.post_boot-kalama.sh",
-    src: "init.kernel.post_boot-kalama.sh",
-    vendor: true,
-}
