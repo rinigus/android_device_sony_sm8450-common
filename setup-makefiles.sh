@@ -24,14 +24,14 @@ source "${HELPER}"
 
 function vendor_imports() {
     cat <<EOF >>"$1"
-        "hardware/qcom-caf/sm8550",
+        "hardware/qcom-caf/sm8450",
         "hardware/qcom-caf/wlan",
         "hardware/sony",
         "vendor/qcom/opensource/commonsys/display",
         "vendor/qcom/opensource/commonsys-intf/display",
         "vendor/qcom/opensource/dataservices",
-        "vendor/sony/pdx234",
-        "vendor/sony/sm8550-common",
+        "vendor/sony/pdx223",
+        "vendor/sony/sm8450-common",
 EOF
 }
 
@@ -85,7 +85,7 @@ function lib_to_package_fixup() {
 setup_vendor "${DEVICE_COMMON}" "${VENDOR_COMMON:-$VENDOR}" "${ANDROID_ROOT}" true
 
 # Warning headers and guards
-write_headers "pdx234"
+write_headers "pdx223"
 
 # The standard common blobs
 write_makefiles "${MY_DIR}/proprietary-files.txt"
