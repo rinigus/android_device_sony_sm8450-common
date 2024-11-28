@@ -62,11 +62,11 @@ BOARD_RAMDISK_USE_LZ4 := true
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 # TODO: partially added in commit with dtbo building
 #   https://github.com/LineageOS/android_device_sony_sm8550-common/commit/c7c327186b7a0a654851053b0ca5122e9a85d23c
-#BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
-#TARGET_NEEDS_DTBOIMAGE := true
+BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
+TARGET_NEEDS_DTBOIMAGE := true
 # TODO: limit dtbs inclusion
 #   https://github.com/LineageOS/android_device_sony_sm8550-common/commit/c4c8891f4c3130a7bd2faaa7e7045b85cfce9c04
-#TARGET_MERGE_DTBS_WILDCARD ?= taro*base
+TARGET_MERGE_DTBS_WILDCARD ?= taro*base
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := taro
@@ -92,54 +92,46 @@ BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_KERNEL_IMAGE_NAME := Image
 
-# TODO: using binary kernel, add when compiling
-#TARGET_KERNEL_SOURCE := kernel/sony/sm8450
-#TARGET_KERNEL_CONFIG := \
-#    gki_defconfig \
-#    vendor/taro_GKI.config \
-#    vendor/sony/taro_GKI.config \
-#    vendor/debugfs.config
+TARGET_KERNEL_SOURCE := kernel/sony/sm8450
+TARGET_KERNEL_CONFIG := \
+    gki_defconfig \
+    vendor/waipio_GKI.config \
+    vendor/debugfs.config
+#    vendor/sony/taro_GKI.config 
 
-# TODO: using binary kernel, add when compiling
-# BOARD_SYSTEM_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.system_dlkm))
-# BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(COMMON_PATH)/modules.blocklist
-# BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load))
-# BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE)
-# BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.vendor_boot))
-# BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
-# BOOT_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery $(COMMON_PATH)/modules.include.vendor_ramdisk))
-# SYSTEM_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.include.system_dlkm))
+BOARD_SYSTEM_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.system_dlkm))
+BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(COMMON_PATH)/modules.blocklist
+BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load))
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE)
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.vendor_boot))
+BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
+BOOT_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery $(COMMON_PATH)/modules.include.vendor_ramdisk))
+SYSTEM_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.include.system_dlkm))
 
-# TODO: using binary kernel, add when compiling
 # Kernel Modules
-# TARGET_KERNEL_EXT_MODULE_ROOT := kernel/sony/sm8450-modules
-# TARGET_KERNEL_EXT_MODULES := \
-#     qcom/opensource/mmrm-driver \
-#     qcom/opensource/mm-drivers/hw_fence \
-#     qcom/opensource/mm-drivers/msm_ext_display \
-#     qcom/opensource/mm-drivers/sync_fence \
-#     qcom/opensource/audio-kernel \
-#     qcom/opensource/camera-kernel \
-#     qcom/opensource/dataipa/drivers/platform/msm \
-#     qcom/opensource/datarmnet/core \
-#     qcom/opensource/datarmnet-ext/aps \
-#     qcom/opensource/datarmnet-ext/offload \
-#     qcom/opensource/datarmnet-ext/shs \
-#     qcom/opensource/datarmnet-ext/perf \
-#     qcom/opensource/datarmnet-ext/perf_tether \
-#     qcom/opensource/datarmnet-ext/sch \
-#     qcom/opensource/datarmnet-ext/wlan \
-#     qcom/opensource/securemsm-kernel \
-#     qcom/opensource/display-drivers/msm \
-#     qcom/opensource/eva-kernel \
-#     qcom/opensource/video-driver \
-#     qcom/opensource/graphics-kernel \
-#     qcom/opensource/wlan/platform \
-#     qcom/opensource/wlan/qcacld-3.0/.kiwi_v2 \
-#     qcom/opensource/bt-kernel \
-#     nxp/opensource/driver \
-#     sony/sony_camera \
-#     sony/lxs_ts
+TARGET_KERNEL_EXT_MODULE_ROOT := kernel/sony/sm8450-modules
+TARGET_KERNEL_EXT_MODULES := \
+	qcom/opensource/mmrm-driver \
+	qcom/opensource/audio-kernel \
+	qcom/opensource/camera-kernel \
+	qcom/opensource/cvp-kernel \
+	qcom/opensource/dataipa/drivers/platform/msm \
+	qcom/opensource/datarmnet/core \
+	qcom/opensource/datarmnet-ext/aps \
+	qcom/opensource/datarmnet-ext/offload \
+	qcom/opensource/datarmnet-ext/shs \
+	qcom/opensource/datarmnet-ext/perf \
+	qcom/opensource/datarmnet-ext/perf_tether \
+	qcom/opensource/datarmnet-ext/sch \
+	qcom/opensource/datarmnet-ext/wlan \
+	qcom/opensource/display-drivers/msm \
+	qcom/opensource/eva-kernel \
+	qcom/opensource/video-driver \
+	qcom/opensource/wlan/qcacld-3.0/.qca6490 \
+	qcom/opensource/wlan/qcacld-3.0/.qca6750
+
+    # sony/sony_camera \
+    # sony/lxs_ts
 
 # Platform
 TARGET_BOARD_PLATFORM := taro
