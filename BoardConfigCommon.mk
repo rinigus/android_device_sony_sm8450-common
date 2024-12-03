@@ -62,11 +62,14 @@ BOARD_RAMDISK_USE_LZ4 := true
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 # TODO: partially added in commit with dtbo building
 #   https://github.com/LineageOS/android_device_sony_sm8550-common/commit/c7c327186b7a0a654851053b0ca5122e9a85d23c
+
 BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
 TARGET_NEEDS_DTBOIMAGE := true
+
 # TODO: limit dtbs inclusion
 #   https://github.com/LineageOS/android_device_sony_sm8550-common/commit/c4c8891f4c3130a7bd2faaa7e7045b85cfce9c04
-TARGET_MERGE_DTBS_WILDCARD ?= taro*base
+# not in sm8350
+# TARGET_MERGE_DTBS_WILDCARD ?= taro*base
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := taro
@@ -96,17 +99,11 @@ TARGET_KERNEL_SOURCE := kernel/sony/sm8450
 TARGET_KERNEL_CONFIG := \
     gki_defconfig \
     vendor/waipio_GKI.config \
-    vendor/debugfs.config
-#    vendor/sony/taro_GKI.config 
+    vendor/sony/nagara.config
 
-BOARD_SYSTEM_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.system_dlkm))
-BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(COMMON_PATH)/modules.blocklist
-BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE)
+BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.vendor_dlkm))
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.vendor_boot))
 BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
-BOOT_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery $(COMMON_PATH)/modules.include.vendor_ramdisk))
-SYSTEM_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.include.system_dlkm))
 
 # Kernel Modules
 TARGET_KERNEL_EXT_MODULE_ROOT := kernel/sony/sm8450-modules
@@ -128,7 +125,9 @@ TARGET_KERNEL_EXT_MODULES := \
 	qcom/opensource/eva-kernel \
 	qcom/opensource/video-driver \
 	qcom/opensource/wlan/qcacld-3.0/.qca6490 \
-	qcom/opensource/wlan/qcacld-3.0/.qca6750
+    cirrus/kernel-modules/cs35l41/sound/soc/codecs \
+    cirrus/kernel-modules/cs40l25/drivers/misc \
+    cirrus/kernel-modules/cs40l25/sound/soc/codecs
 
     # sony/sony_camera \
     # sony/lxs_ts
