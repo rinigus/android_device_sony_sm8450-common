@@ -537,7 +537,7 @@ product/priv-app/EuiccMemoryReset/EuiccMemoryReset.apk;PRESIGNED
 vendor/bin/hw/vendor.semc.hardware.extlight-service.somc
 vendor/etc/init/vendor.semc.hardware.extlight-somc.rc
 vendor/etc/vintf/manifest/vendor.semc.hardware.extlight-somc.xml
-vendor/lib64/vendor.semc.hardware.extlight-V1-ndk_platform.so
+vendor/lib64/vendor.semc.hardware.extlight-V1-ndk_platform.so;DISABLE_CHECKELF
 
 # FASTCV
 vendor/lib64/libfastcvdsp_stub.so
