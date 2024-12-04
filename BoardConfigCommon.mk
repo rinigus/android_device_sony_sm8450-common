@@ -108,29 +108,40 @@ BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMO
 # Kernel Modules
 TARGET_KERNEL_EXT_MODULE_ROOT := kernel/sony/sm8450-modules
 TARGET_KERNEL_EXT_MODULES := \
-	qcom/opensource/mmrm-driver \
-	qcom/opensource/audio-kernel \
-	qcom/opensource/camera-kernel \
-	qcom/opensource/cvp-kernel \
-	qcom/opensource/dataipa/drivers/platform/msm \
-	qcom/opensource/datarmnet/core \
-	qcom/opensource/datarmnet-ext/aps \
-	qcom/opensource/datarmnet-ext/offload \
-	qcom/opensource/datarmnet-ext/shs \
-	qcom/opensource/datarmnet-ext/perf \
-	qcom/opensource/datarmnet-ext/perf_tether \
-	qcom/opensource/datarmnet-ext/sch \
-	qcom/opensource/datarmnet-ext/wlan \
-	qcom/opensource/display-drivers/msm \
-	qcom/opensource/eva-kernel \
-	qcom/opensource/video-driver \
-	qcom/opensource/wlan/qcacld-3.0/.qca6490 \
+    qcom/opensource/mmrm-driver \
+    qcom/opensource/audio-kernel \
+    qcom/opensource/camera-kernel \
+    qcom/opensource/cvp-kernel \
+    qcom/opensource/dataipa/drivers/platform/msm \
+    qcom/opensource/datarmnet/core \
+    qcom/opensource/datarmnet-ext/aps \
+    qcom/opensource/datarmnet-ext/offload \
+    qcom/opensource/datarmnet-ext/shs \
+    qcom/opensource/datarmnet-ext/perf \
+    qcom/opensource/datarmnet-ext/perf_tether \
+    qcom/opensource/datarmnet-ext/sch \
+    qcom/opensource/datarmnet-ext/wlan \
+    qcom/opensource/display-drivers/msm \
+    qcom/opensource/eva-kernel \
+    qcom/opensource/video-driver \
+    qcom/opensource/wlan/qcacld-3.0/.qca6490 \
     cirrus/kernel-modules/cs35l41/sound/soc/codecs \
     cirrus/kernel-modules/cs40l25/drivers/misc \
-    cirrus/kernel-modules/cs40l25/sound/soc/codecs
-
-    # sony/sony_camera \
-    # sony/lxs_ts
+    cirrus/kernel-modules/cs40l25/sound/soc/codecs \
+    semc/hardware/camera-kernel-module/camera_sync \
+    semc/hardware/camera-kernel-module/sony_camera \
+    semc/hardware/camera-kernel-module/tcs3490 \
+    semc/hardware/camera-kernel-module/slg51000_regulator \
+    semc/hardware/charge/kernel-modules/battman_dbg \
+    semc/hardware/charge/kernel-modules/battchg_ext \
+    semc/hardware/kernel-modules/misc/bu520x1nvx \
+    semc/hardware/kernel-modules/misc/et6xx \
+    semc/hardware/kernel-modules/misc/ldo_vibrator \
+    semc/hardware/kernel-modules/misc/last_logs \
+    semc/hardware/kernel-modules/misc/powerkey_forcecrash \
+    semc/hardware/kernel-modules/msm/sec_ts \
+    semc/hardware/nfc/drivers/sn1x0_i2c \
+    semc/hardware/nfc/drivers/sn1x0_spi
 
 # Platform
 TARGET_BOARD_PLATFORM := taro
