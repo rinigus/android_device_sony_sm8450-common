@@ -34,7 +34,6 @@ AB_OTA_PARTITIONS += \
     vbmeta \
     vbmeta_system \
     odm \
-    recovery \
     vendor \
     vendor_boot \
     vendor_dlkm
@@ -104,6 +103,7 @@ TARGET_KERNEL_CONFIG := \
 BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.vendor_dlkm))
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.vendor_boot))
 BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
+# BOOT_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
 
 # Kernel Modules
 TARGET_KERNEL_EXT_MODULE_ROOT := kernel/sony/sm8450-modules
@@ -136,8 +136,8 @@ TARGET_KERNEL_EXT_MODULES := \
     semc/hardware/charge/kernel-modules/battchg_ext \
     semc/hardware/kernel-modules/misc/bu520x1nvx \
     semc/hardware/kernel-modules/misc/et6xx \
-    semc/hardware/kernel-modules/misc/ldo_vibrator \
     semc/hardware/kernel-modules/misc/last_logs \
+    semc/hardware/kernel-modules/misc/ldo_vibrator \
     semc/hardware/kernel-modules/misc/powerkey_forcecrash \
     semc/hardware/kernel-modules/msm/sec_ts \
     semc/hardware/nfc/drivers/sn1x0_i2c \
@@ -206,7 +206,6 @@ BOARD_PRODUCTIMAGE_MINIMAL_PARTITION_RESERVED_SIZE := false
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x06000000
 BOARD_DTBOIMG_PARTITION_SIZE := 25165824
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 0x6000000
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 104857600
 # userdata defined for each device separately as it is different for
 # pdx223 and pdx224
 BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -244,9 +243,10 @@ TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
 TARGET_SYSTEM_EXT_PROP += $(COMMON_PATH)/system_ext.prop
 
 # Recovery
-BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/fstab.default
-TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
+TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
