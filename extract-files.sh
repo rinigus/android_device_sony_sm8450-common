@@ -69,9 +69,13 @@ if [ -z "${SRC}" ]; then
     SRC="adb"
 fi
 
+function blob_patcher() {
+    grep -q "${1}" "${2}" || ${PATCHELF} --add-needed "${1}" "${2}"
+}
+
 function blob_fixup() {
     case "${1}" in
-        vendor/bin/hw/android.hardware.security.keymint-service-qti|vendor/bin/hw/vendor.semc.hardware.secd@1.1-service|vendor/bin/keyprovd|vendor/lib64/libqtikeymint.so|vendor/lib64/librkp.so)
+        vendor/bin/hw/vendor.semc.hardware.secd@1.1-service|vendor/bin/keyprovd|vendor/lib64/librkp.so)
             [ "$2" = "" ] && return 0
             grep -q "android.hardware.security.rkp-V3-ndk.so" "${2}" || ${PATCHELF} --add-needed "android.hardware.security.rkp-V3-ndk.so" "${2}"
             ;;
@@ -99,6 +103,13 @@ function blob_fixup() {
         [ "$2" = "" ] && return 0
         grep -q "libcrypto.so" "${2}" || "${PATCHELF}" --add-needed "libcrypto.so" "${2}"
         grep -q "libiVptHkiDec.so" "${2}" || "${PATCHELF}" --add-needed "libiVptHkiDec.so" "${2}"
+        ;;
+    vendor/bin/hw/android.hardware.security.keymint-service-qti|vendor/lib64/libqtikeymint.so)
+        [ "$2" = "" ] && return 0
+        blob_patcher "android.hardware.security.rkp-V3-ndk.so" "${2}"
+        blob_patcher "android.hardware.security.secureclock-V1-ndk.so" "${2}"
+        blob_patcher "android.hardware.security.sharedsecret-V1-ndk.so" "${2}"
+        blob_patcher "android.hardware.security.keymint-V1-ndk.so" "${2}"
         ;;
         *)
             return 1
