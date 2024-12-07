@@ -1,37 +1,37 @@
 <compatibility-matrix version="2.0" type="framework">
     <hal format="hidl" optional="true">
         <name>vendor.nxp.nxpnfc</name>
-        <version>2.0-4</version>
+        <version>2.0</version>
         <interface>
             <name>INxpNfc</name>
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
-       <name>vendor.somc.hardware.security.secd</name>
-       <version>1.1</version>
-       <interface>
+    <hal format="hidl" optional="true">
+        <name>vendor.somc.hardware.security.secd</name>
+        <version>1.1</version>
+        <interface>
             <name>IDeviceSecurity</name>
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
-       <name>vendor.semc.system.idd</name>
-       <version>1.1</version>
-       <interface>
+    <hal format="hidl" optional="true">
+        <name>vendor.semc.system.idd</name>
+        <version>1.0-1</version>
+        <interface>
             <name>IIdd</name>
             <instance>default</instance>
             <instance>logreader</instance>
         </interface>
     </hal>
-    <hal format="hidl">
-       <name>vendor.semc.hardware.display</name>
-       <version>2.2-4</version>
-       <interface>
+    <hal format="hidl" optional="true">
+        <name>vendor.semc.hardware.display</name>
+        <version>2.2-5</version>
+        <interface>
             <name>IDisplay</name>
             <instance>default</instance>
         </interface>
-       <interface>
+        <interface>
             <name>IFramerateController</name>
             <instance>default</instance>
         </interface>
@@ -45,17 +45,17 @@
             <instance>somchook2</instance>
         </interface>
     </hal>
-    <hal format="hidl">
-       <name>vendor.somc.hardware.miscta</name>
-       <version>1.0</version>
-       <interface>
+    <hal format="hidl" optional="true">
+        <name>vendor.somc.hardware.miscta</name>
+        <version>1.0</version>
+        <interface>
             <name>IMisctaGlobal</name>
             <instance>default</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.semc.hardware.charger</name>
-        <version>1.0</version>
+        <version>1.2</version>
         <interface>
             <name>ICharger</name>
             <instance>default</instance>
@@ -63,13 +63,13 @@
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.semc.hardware.charger</name>
-        <version>1.1</version>
+        <version>1.2</version>
         <interface>
-          <name>ICharger</name>
+            <name>ICharger</name>
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="aidl">
+    <hal format="aidl" optional="true">
         <name>vendor.somc.hardware.aidlmiscta</name>
         <interface>
             <name>IMisctaGlobal</name>
@@ -90,6 +90,10 @@
             <name>IBiometricsFingerprintBix</name>
             <instance>default</instance>
         </interface>
+        <interface>
+            <name>IBiometricsFingerprintRbs</name>
+            <instance>default</instance>
+        </interface>
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.semc.hardware.display</name>
@@ -105,7 +109,7 @@
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.semc.system.idd</name>
-        <version>1.1</version>
+        <version>1.0-1</version>
         <interface>
             <name>IIdd</name>
             <instance>default</instance>
