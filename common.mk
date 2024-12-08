@@ -41,7 +41,7 @@ SOONG_CONFIG_android_hardware_audio += \
 SOONG_CONFIG_android_hardware_audio_run_64bit := true
 
 PRODUCT_PACKAGES += \
-    android.hardware.audio@7.0-impl \
+    android.hardware.audio@7.1-impl \
     android.hardware.audio.effect@7.0-impl \
     android.hardware.audio.service \
     android.hardware.bluetooth.audio-impl \
@@ -540,9 +540,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/usb/etc
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/usb/usb_compositions.conf:$(TARGET_COPY_OUT_VENDOR)/etc/usb_compositions.conf
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.accessory.xml \
