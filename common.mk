@@ -41,7 +41,7 @@ SOONG_CONFIG_android_hardware_audio += \
 SOONG_CONFIG_android_hardware_audio_run_64bit := true
 
 PRODUCT_PACKAGES += \
-    android.hardware.audio@7.1-impl \
+    android.hardware.audio@7.0-impl \
     android.hardware.audio.effect@7.0-impl \
     android.hardware.audio.service \
     android.hardware.bluetooth.audio-impl \
@@ -268,12 +268,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fstab.zram \
     init.class_main.sh \
-    init.kernel.post_boot.sh \
     init.qcom.early_boot.sh \
     init.qcom.msim.sh \
     init.qcom.rc \
     init.qcom.sh \
-    init.qti.kernel.rc \
     init.recovery.qcom.rc \
     init.target.rc \
     init.sony-device-common.rc \
@@ -453,7 +451,7 @@ PRODUCT_PACKAGES += \
     android.hidl.base@1.0.vendor
 
 # Shipping API
-BOARD_SHIPPING_API_LEVEL := 33
+BOARD_SHIPPING_API_LEVEL := 31    # based on stock getprop ro.product.first_api_level
 PRODUCT_SHIPPING_API_LEVEL := $(BOARD_SHIPPING_API_LEVEL)
 
 # Sony Display interface
