@@ -225,8 +225,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.location.gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.gps.xml
 
 # Graphics
-TARGET_USES_VULKAN = true
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.opengles.aep.xml \
     frameworks/native/data/etc/android.hardware.vulkan.compute-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.compute.xml \
@@ -362,13 +360,14 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
     CarrierConfigResCommon \
-    SonyYodoDeviceAsWebcamResCommon \
-    SonyYodoFrameworksResCommon \
-    SonyYodoSettingsProviderOverlayCommon \
-    SonyYodoSettingsResCommon \
-    SonyYodoSystemUIResCommon \
-    SonyYodoTelephonyResCommon \
     WifiResCommon
+    
+    # SonyYodoDeviceAsWebcamResCommon \
+    # SonyYodoFrameworksResCommon \
+    # SonyYodoSettingsProviderOverlayCommon \
+    # SonyYodoSettingsResCommon \
+    # SonyYodoSystemUIResCommon \
+    # SonyYodoTelephonyResCommon \
 
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
