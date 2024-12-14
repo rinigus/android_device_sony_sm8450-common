@@ -2,6 +2,7 @@ adsp_sleepmon.ko
 altmode-glink.ko
 arm_smmu.ko
 asix.ko
+atmel_mxt_ts.ko
 ax88179_178a.ko
 bam_dma.ko
 bcl_pmic5.ko
