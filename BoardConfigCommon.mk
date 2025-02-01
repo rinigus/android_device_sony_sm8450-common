@@ -77,6 +77,7 @@ TARGET_NO_BOOTLOADER := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE += video=vfb:640x400,bpp=32,memsize=3072000
+
 # removed: not in pdx223
 # BOARD_KERNEL_CMDLINE += nosoftlockup
 BOARD_BOOTCONFIG := \
@@ -262,6 +263,7 @@ include hardware/sony/sepolicy/qti/SEPolicy.mk
 ## Nagara is using AVB 1.2 (1.0)
 # Verified Boot
 BOARD_AVB_ENABLE := true
+
 # not in aosp
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
 BOARD_AVB_VBMETA_SYSTEM := system system_ext product
