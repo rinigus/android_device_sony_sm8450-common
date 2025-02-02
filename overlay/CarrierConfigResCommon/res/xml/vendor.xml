@@ -114,9 +114,6 @@
         <int name="s_dpm_fd_screen_on_idle_timer_int" value="0" />
         <int name="s_dpm_fd_tethering_on_idle_timer_int" value="0" />
         <boolean name="s_enable_ss_over_ut_only_when_ims_entitled_bool" value="false" />
-        <int name="s_config_hysteresis_db" value="2" />
-        <boolean name="s_support_manage_downgraded_conference_call_bool" value="true" />
-        <boolean name="s_format_participant_phone_number_to_e164_bool" value="true" />
         <boolean name="s_config_display_5g_sa_switch_bool" value="false" />
         <boolean name="s_config_default_5g_sa_enabled_bool" value="true" />
         <boolean name="s_config_show_tethering_confirmation_dialog_bool" value="false" />
@@ -151,7 +148,7 @@
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="5" />
         <int name="call_barring_default_service_class_int" value="0" />
-        <boolean name="vonr_setting_visibility_bool" value="true" />
+        <boolean name="vonr_setting_visibility_bool" value="false" />
         <boolean name="use_only_dialed_sim_ecc_list_bool" value="false" />
     </carrier_config>
     <carrier_config sku="jp_dcm">
@@ -195,8 +192,6 @@
         <boolean name="s_config_enable_side_car_for_5g_icon_bool" value="true" />
         <boolean name="hide_enhanced_4g_lte_bool" value="true" />
         <string name="smart_forwarding_config_component_name_string" />
-        <boolean name="s_support_manage_downgraded_conference_call_bool" value="false" />
-        <boolean name="s_format_participant_phone_number_to_e164_bool" value="false" />
         <boolean name="s_config_display_5g_sa_switch_bool" value="true" />
     </carrier_config>
     <carrier_config board="lahaina" sku="jp_sbm">
@@ -281,23 +276,13 @@
         <boolean name="s_config_disable_tether_after_failed_bool" value="true" />
         <string name="default_vm_number_roaming_and_ims_unregistered_string">+819044441415</string>
         <boolean name="allow_hold_call_during_emergency_bool" value="false" />
-        <int-array name="disconnect_cause_play_busytone_int_array" num="8">
-            <item value="2" />
-            <item value="4" />
-            <item value="8" />
-            <item value="9" />
-            <item value="12" />
-            <item value="13" />
-            <item value="18" />
-            <item value="60" />
-        </int-array>
         <int-array name="lte_rssnr_thresholds_int_array" num="4">
             <item value="-5" />
             <item value="-3" />
             <item value="0" />
             <item value="3" />
         </int-array>
-        <int name="s_config_hysteresis_db" value="1" />
+        <int name="eutran_rssnr_hysteresis_db_int" value="1" />
         <int name="parameters_used_for_lte_signal_bar_int" value="5" />
         <int name="parameters_use_for_5g_nr_signal_bar_int" value="5" />
         <int-array name="5g_nr_ssrsrp_thresholds_int_array" num="4">
@@ -312,6 +297,7 @@
             <item value="0" />
             <item value="3" />
         </int-array>
+        <int name="ngran_sssinr_hysteresis_db_int" value="1" />
         <boolean name="show_wfc_location_privacy_policy_bool" value="false" />
         <boolean name="support_clir_network_default_bool" value="false" />
         <boolean name="carrier_name_override_bool" value="true" />
@@ -504,6 +490,23 @@
             <item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>                          &lt;WifiNetwork>                          &lt;SSID>COSMOTEWiFiAuto&lt;/SSID>                          &lt;Credential>                              &lt;SIM>                                  &lt;EAPType>18&lt;/EAPType>                              &lt;/SIM>                          &lt;/Credential>                          &lt;/WifiNetwork>" />
         </string-array>
     </carrier_config>
+    <carrier_config mcc="202" mnc="05">
+        <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
+            <item value="2G" />
+            <item value="3G" />
+            <item value="CDMA" />
+            <item value="EvDo" />
+            <item value="4G" />
+            <item value="TDSCDMA" />
+            <item value="5G" />
+        </string-array>
+        <string-array name="s_preferred_network_mode_marshal_string_array" num="4">
+            <item value="26" />
+            <item value="9" />
+            <item value="0" />
+            <item value="1" />
+        </string-array>
+    </carrier_config>
     <carrier_config mcc="204">
         <boolean name="groupChatDefaultsToMMS" value="false" />
         <boolean name="smsUsesSimpleCharactersOnly" value="true" />
@@ -533,6 +536,9 @@
             <item value="4G" />
             <item value="TDSCDMA" />
             <item value="5G" />
+        </string-array>
+        <string-array name="s_preferred_network_mode_marshal_string_array" num="1">
+            <item value="26" />
         </string-array>
         <int name="wfc_data_spn_format_idx_int" value="1" />
         <int name="wfc_spn_format_idx_int" value="1" />
@@ -570,6 +576,13 @@
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
         <boolean name="show_ims_registration_status_bool" value="true" />
         <boolean name="show_4g_for_lte_data_icon_bool" value="false" />
+        <string-array name="s_preferred_network_mode_marshal_string_array" num="5">
+            <item value="2" />
+            <item value="1" />
+            <item value="0" />
+            <item value="9" />
+            <item value="26" />
+        </string-array>
     </carrier_config>
     <carrier_config board="lahaina" gid1="BAE0000000000000" mcc="204" mnc="04">
         <boolean name="s_config_enable_side_car_for_5g_icon_bool" value="false" />
@@ -884,8 +897,6 @@
     </carrier_config>
     <carrier_config mcc="206" mnc="10">
         <int name="s_dpm_fd_screen_on_idle_timer_int" value="7" />
-        <boolean name="carrier_volte_available_bool" value="false" />
-        <boolean name="s_config_enable_ut_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="206" mnc="10" spn="Orange B">
         <string-array name="ratchet_rat_families" num="3">
@@ -922,6 +933,8 @@
             <item value="TDSCDMA" />
             <item value="5G" />
         </string-array>
+        <boolean name="carrier_volte_available_bool" value="false" />
+        <boolean name="s_config_enable_ut_bool" value="false" />
     </carrier_config>
     <carrier_config gid1="2800000000000000" mcc="206" mnc="20">
         <boolean name="display_voicemail_number_as_default_call_forwarding_number" value="true" />
@@ -1034,6 +1047,12 @@
         </map>
         <boolean name="show_iccid_in_sim_status_bool" value="true" />
     </carrier_config>
+    <carrier_config board="kalama" mcc="208" mnc="01" spn="Orange F">
+        <boolean name="s_fallback_sms_not_allowed_in_wfc_roaming" value="true" />
+    </carrier_config>
+    <carrier_config board="holi" mcc="208" mnc="01" spn="Orange F">
+        <boolean name="s_fallback_sms_not_allowed_in_wfc_roaming" value="true" />
+    </carrier_config>
     <carrier_config mcc="208" mnc="01" sku="rakuten" spn="Rakuten">
         <boolean name="carrier_volte_provisioning_required_bool" value="false" />
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -1041,7 +1060,6 @@
         <int name="spn_display_condition_override_int" value="2" />
     </carrier_config>
     <carrier_config gid1="4E524A31" mcc="208" mnc="01">
-        <string name="vvm_type_string">vvm_type_not_supported</string>
         <int name="maxMessageSize" value="614400" />
         <string-array name="s_preferred_network_mode_marshal_string_array" num="4">
             <item value="26" />
@@ -1058,6 +1076,35 @@
             <item value="TDSCDMA" />
             <item value="5G" />
         </string-array>
+    </carrier_config>
+    <carrier_config imsi="^2080115[67].*" mcc="208" mnc="01">
+        <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
+            <item value="2G" />
+            <item value="3G" />
+            <item value="CDMA" />
+            <item value="EvDo" />
+            <item value="LTE" />
+            <item value="TDSCDMA" />
+            <item value="5G" />
+        </string-array>
+        <string-array name="s_preferred_network_mode_marshal_string_array" num="4">
+            <item value="26" />
+            <item value="9" />
+            <item value="0" />
+            <item value="1" />
+        </string-array>
+        <string name="default_vm_number_string">+4915566000333</string>
+        <string name="5g_icon_configuration_string">connected_mmwave:5g,connected:5g,not_restricted_rrc_idle:5g</string>
+        <boolean name="show_4g_for_lte_data_icon_bool" value="false" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="s_config_enable_ut_bool" value="true" />
+        <boolean name="carrier_volte_provisioning_required_bool" value="false" />
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="s_show_wfc_request_location_bool" value="false" />
+        <int name="s_dpm_fd_screen_on_idle_timer_int" value="0" />
+        <boolean name="support_no_reply_timer_for_cfnry_bool" value="true" />
+        <boolean name="auto_retry_failed_wifi_emergency_call" value="false" />
+        <boolean name="support_ims_conference_event_package_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="208" mnc="02">
         <string name="imsserviceentitlement.entitlement_server_url_string">https://aes.orange-labs.fr:9014/DEGDROIDInterface</string>
@@ -1243,10 +1290,15 @@
         <boolean name="carrier_volte_available_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="214">
-        <string-array name="unloggable_numbers_string_array" num="3">
+        <string-array name="unloggable_numbers_string_array" num="8">
             <item value="016" />
             <item value="900018018" />
             <item value="024" />
+            <item value="017" />
+            <item value="021" />
+            <item value="028" />
+            <item value="116000" />
+            <item value="116111" />
         </string-array>
         <string-array name="carrier_metered_apn_types_strings" num="3">
             <item value="default" />
@@ -1280,10 +1332,9 @@
         <boolean name="s_config_enable_ut_bool" value="true" />
         <boolean name="s_config_enable_ut_only_when_ims_registered_bool" value="true" />
         <boolean name="s_config_enable_ut_when_roaming_bool" value="false" />
-        <string-array name="s_preferred_network_mode_marshal_string_array" num="4">
+        <string-array name="s_preferred_network_mode_marshal_string_array" num="3">
             <item value="26" />
             <item value="9" />
-            <item value="2" />
             <item value="0" />
         </string-array>
         <boolean name="enabledMMS" value="false" />
@@ -2118,14 +2169,20 @@
             <item value="TDSCDMA" />
             <item value="5G" />
         </string-array>
+        <string-array name="s_preferred_network_mode_marshal_string_array" num="3">
+            <item value="26" />
+            <item value="9" />
+            <item value="0" />
+        </string-array>
         <int name="smsToMmsTextThreshold" value="-1" />
         <boolean name="smsUsesSimpleCharactersOnly" value="true" />
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="s_config_enable_ut_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="carrier_default_wfc_ims_enabled_bool" value="true" />
         <boolean name="carrier_default_wfc_ims_roaming_enabled_bool" value="false" />
         <int name="carrier_default_wfc_ims_roaming_mode_int" value="1" />
-        <int name="carrier_default_wfc_ims_mode_int" value="1" />
+        <boolean name="use_wfc_home_network_mode_in_roaming_network_bool" value="false" />
         <int name="wfc_data_spn_format_idx_int" value="11" />
         <int name="wfc_spn_format_idx_int" value="11" />
         <boolean name="enabledMMS" value="false" />
@@ -2182,6 +2239,12 @@
         <boolean name="smsUsesSimpleCharactersOnly" value="true" />
         <boolean name="display_hd_plus_icon_bool" value="true" />
     </carrier_config>
+    <carrier_config board="kalama" mcc="226" mnc="10" spn="Orange">
+        <boolean name="s_fallback_sms_not_allowed_in_wfc_roaming" value="true" />
+    </carrier_config>
+    <carrier_config board="holi" mcc="226" mnc="10" spn="Orange">
+        <boolean name="s_fallback_sms_not_allowed_in_wfc_roaming" value="true" />
+    </carrier_config>
     <carrier_config mcc="228" mnc="01">
         <int name="carrier_default_wfc_ims_mode_int" value="1" />
         <int name="carrier_default_wfc_ims_roaming_mode_int" value="1" />
@@ -2228,7 +2291,7 @@
             <item value="5G" />
         </string-array>
         <boolean name="s_show_volte_icon_in_status_bar_bool" value="true" />
-        <boolean name="s_config_enable_ut_bool" value="false" />
+        <boolean name="s_config_enable_ut_only_when_ims_registered_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="228" mnc="03">
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
@@ -2333,6 +2396,12 @@
             <item value="TDSCDMA" />
             <item value="5G" />
         </string-array>
+        <string-array name="s_preferred_network_mode_marshal_string_array" num="4">
+            <item value="26" />
+            <item value="9" />
+            <item value="0" />
+            <item value="1" />
+        </string-array>
         <int name="smsToMmsTextThreshold" value="6" />
         <boolean name="smsUsesSimpleCharactersOnly" value="true" />
     </carrier_config>
@@ -2388,6 +2457,12 @@
         <boolean name="s_config_enable_ut_bool" value="true" />
         <boolean name="display_hd_plus_icon_bool" value="true" />
     </carrier_config>
+    <carrier_config board="kalama" mcc="231" mnc="01" spn="Orange">
+        <boolean name="s_fallback_sms_not_allowed_in_wfc_roaming" value="true" />
+    </carrier_config>
+    <carrier_config board="holi" mcc="231" mnc="01" spn="Orange">
+        <boolean name="s_fallback_sms_not_allowed_in_wfc_roaming" value="true" />
+    </carrier_config>
     <carrier_config mcc="231" mnc="02">
         <int name="s_dpm_fd_screen_on_idle_timer_int" value="7" />
         <string-array name="carrier_metered_apn_types_strings" num="3">
@@ -2419,14 +2494,13 @@
         <boolean name="groupChatDefaultsToMMS" value="false" />
         <boolean name="smsUsesSimpleCharactersOnly" value="true" />
     </carrier_config>
-    <carrier_config mcc="232" mnc="01">
+    <carrier_config cid="14" name="A1">
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="carrier_volte_available_bool" value="true" />
         <string name="default_vm_number_string">66477</string>
         <boolean name="display_hd_audio_property_bool" value="false" />
         <boolean name="enableWapPushSI" value="true" />
         <string-array name="read_only_apn_types_string_array" num="0" />
-        <boolean name="s_config_enable_ut_bool" value="true" />
         <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
             <item value="2G" />
             <item value="3G" />
@@ -2438,7 +2512,80 @@
         </string-array>
         <boolean name="smsEncodingChangeable" value="false" />
         <boolean name="smsUsesSimpleCharactersOnly" value="true" />
-        <boolean name="s_config_enable_ut_bool" value="false" />
+    </carrier_config>
+    <carrier_config board="taro" cid="14" name="A1">
+        <boolean name="carrier_wfc_ims_available_bool" value="false" />
+        <string name="default_vm_number_string" />
+        <boolean name="display_hd_audio_property_bool" value="true" />
+        <boolean name="enableWapPushSI" value="false" />
+        <string-array name="read_only_apn_types_string_array" num="2">
+            <item value="dun" />
+            <item value="ims" />
+        </string-array>
+        <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
+            <item value="GSM" />
+            <item value="WCDMA" />
+            <item value="CDMA" />
+            <item value="EvDo" />
+            <item value="LTE" />
+            <item value="TDSCDMA" />
+            <item value="5G NR" />
+        </string-array>
+        <boolean name="smsEncodingChangeable" value="true" />
+    </carrier_config>
+    <carrier_config board="taro" mcc="232" mnc="01">
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <string name="default_vm_number_string">66477</string>
+        <boolean name="display_hd_audio_property_bool" value="false" />
+        <boolean name="enableWapPushSI" value="true" />
+        <string-array name="read_only_apn_types_string_array" num="0" />
+        <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
+            <item value="2G" />
+            <item value="3G" />
+            <item value="CDMA" />
+            <item value="EvDo" />
+            <item value="4G" />
+            <item value="TDSCDMA" />
+            <item value="5G" />
+        </string-array>
+        <boolean name="smsEncodingChangeable" value="false" />
+    </carrier_config>
+    <carrier_config cid="14" device="XQ-CC54" name="A1">
+        <boolean name="carrier_wfc_ims_available_bool" value="false" />
+        <string name="default_vm_number_string" />
+        <boolean name="display_hd_audio_property_bool" value="true" />
+        <boolean name="enableWapPushSI" value="false" />
+        <string-array name="read_only_apn_types_string_array" num="2">
+            <item value="dun" />
+            <item value="ims" />
+        </string-array>
+        <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
+            <item value="GSM" />
+            <item value="WCDMA" />
+            <item value="CDMA" />
+            <item value="EvDo" />
+            <item value="LTE" />
+            <item value="TDSCDMA" />
+            <item value="5G NR" />
+        </string-array>
+        <boolean name="smsEncodingChangeable" value="true" />
+    </carrier_config>
+    <carrier_config device="XQ-CC54" mcc="232" mnc="01">
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <string name="default_vm_number_string">66477</string>
+        <boolean name="display_hd_audio_property_bool" value="false" />
+        <boolean name="enableWapPushSI" value="true" />
+        <string-array name="read_only_apn_types_string_array" num="0" />
+        <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
+            <item value="2G" />
+            <item value="3G" />
+            <item value="CDMA" />
+            <item value="EvDo" />
+            <item value="4G" />
+            <item value="TDSCDMA" />
+            <item value="5G" />
+        </string-array>
+        <boolean name="smsEncodingChangeable" value="false" />
     </carrier_config>
     <carrier_config mcc="232" mnc="03">
         <int name="s_dpm_fd_screen_on_idle_timer_int" value="7" />
@@ -2696,9 +2843,9 @@
             <item value="5G" />
         </string-array>
         <boolean name="s_show_enhanced_4g_lte_qs_bool" value="true" />
-        <int name="wifi.carrier_profiles_version_int" value="1" />
+        <int name="wifi.carrier_profiles_version_int" value="2" />
         <string-array name="wifi.network_profiles_string_array" num="1">
-            <item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>                          &lt;WifiNetwork>                          &lt;SSID>Wifi Extra&lt;/SSID>                          &lt;Credential>                              &lt;SIM>                                  &lt;EAPType>18&lt;/EAPType>                              &lt;/SIM>                          &lt;/Credential>                          &lt;/WifiNetwork>" />
+            <item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>                          &lt;WifiNetwork hiddenSSID=&quot;true&quot;>                          &lt;SSID>Wifi Extra&lt;/SSID>                          &lt;Credential>                              &lt;SIM>                                  &lt;EAPType>18&lt;/EAPType>                              &lt;/SIM>                          &lt;/Credential>                          &lt;/WifiNetwork>" />
         </string-array>
     </carrier_config>
     <carrier_config board="taro" mcc="234" mnc="10">
@@ -2799,19 +2946,11 @@
         </string-array>
         <boolean name="show_spn_for_home_in_choose_network_setting_bool" value="true" />
     </carrier_config>
-    <carrier_config cid="1507" name="manx telecom">
-        <boolean name="carrier_wfc_ims_available_bool" value="false" />
-        <boolean name="carrier_volte_available_bool" value="false" />
-    </carrier_config>
     <carrier_config board="taro" cid="2093" name="tesco">
         <boolean name="carrier_wfc_ims_available_bool" value="false" />
         <boolean name="carrier_volte_available_bool" value="false" />
     </carrier_config>
     <carrier_config cid="2093" device="XQ-CC54" name="tesco">
-        <boolean name="carrier_wfc_ims_available_bool" value="false" />
-        <boolean name="carrier_volte_available_bool" value="false" />
-    </carrier_config>
-    <carrier_config cid="2117" name="talktalk">
         <boolean name="carrier_wfc_ims_available_bool" value="false" />
         <boolean name="carrier_volte_available_bool" value="false" />
     </carrier_config>
@@ -2867,11 +3006,6 @@
         <boolean name="smsUsesSimpleCharactersOnly" value="true" />
         <int name="wfc_data_spn_format_idx_int" value="7" />
         <int name="wfc_spn_format_idx_int" value="7" />
-        <map name="ims.mmtel_requires_provisioning_bundle">
-            <int-array name="ims.capability_type_voice_int_array" num="1">
-                <item value="1" />
-            </int-array>
-        </map>
         <int name="wifi.carrier_profiles_version_int" value="1" />
         <string-array name="wifi.network_profiles_string_array" num="1">
             <item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>                          &lt;WifiNetwork>                          &lt;SSID>VodafoneWiFi&lt;/SSID>                          &lt;Credential>                              &lt;SIM>                                  &lt;EAPType>23&lt;/EAPType>                              &lt;/SIM>                          &lt;/Credential>                          &lt;/WifiNetwork>" />
@@ -3124,12 +3258,6 @@
         <int name="wfc_data_spn_format_idx_int" value="1" />
         <int name="wfc_spn_format_idx_int" value="1" />
     </carrier_config>
-    <carrier_config board="taro" mcc="234" mnc="30">
-        <boolean name="hide_preferred_network_type_bool" value="false" />
-    </carrier_config>
-    <carrier_config device="XQ-CC54" mcc="234" mnc="30">
-        <boolean name="hide_preferred_network_type_bool" value="false" />
-    </carrier_config>
     <carrier_config mcc="234" mnc="30" spn="Virgin">
         <boolean name="carrier_default_data_roaming_enabled_bool" value="false" />
         <boolean name="hide_preferred_network_type_bool" value="false" />
@@ -3204,6 +3332,12 @@
             <item value="9" />
         </string-array>
     </carrier_config>
+    <carrier_config board="taro" gid1="B3" mcc="234" mnc="30">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
+    </carrier_config>
+    <carrier_config device="XQ-CC54" gid1="B3" mcc="234" mnc="30">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
+    </carrier_config>
     <carrier_config gid1="B3FF" mcc="234" mnc="30">
         <string name="carrier_name_string">BT</string>
         <string name="default_vm_number_string">1571</string>
@@ -3211,6 +3345,12 @@
             <item value="26" />
             <item value="9" />
         </string-array>
+    </carrier_config>
+    <carrier_config board="taro" gid1="B3FF" mcc="234" mnc="30">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
+    </carrier_config>
+    <carrier_config device="XQ-CC54" gid1="B3FF" mcc="234" mnc="30">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
     </carrier_config>
     <carrier_config gid1="C3" mcc="234" mnc="30">
         <boolean name="carrier_name_override_bool" value="true" />
@@ -3221,6 +3361,12 @@
             <item value="9" />
         </string-array>
     </carrier_config>
+    <carrier_config board="taro" gid1="C3" mcc="234" mnc="30">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
+    </carrier_config>
+    <carrier_config device="XQ-CC54" gid1="C3" mcc="234" mnc="30">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
+    </carrier_config>
     <carrier_config gid1="C3FF" mcc="234" mnc="30">
         <string name="carrier_name_string">BT</string>
         <string name="default_vm_number_string">1571</string>
@@ -3229,17 +3375,35 @@
             <item value="9" />
         </string-array>
     </carrier_config>
+    <carrier_config board="taro" gid1="C3FF" mcc="234" mnc="30">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
+    </carrier_config>
+    <carrier_config device="XQ-CC54" gid1="C3FF" mcc="234" mnc="30">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
+    </carrier_config>
     <carrier_config gid1="EE" mcc="234" mnc="30">
         <string-array name="s_preferred_network_mode_marshal_string_array" num="2">
             <item value="26" />
             <item value="9" />
         </string-array>
     </carrier_config>
+    <carrier_config board="taro" gid1="EE" mcc="234" mnc="30">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
+    </carrier_config>
+    <carrier_config device="XQ-CC54" gid1="EE" mcc="234" mnc="30">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
+    </carrier_config>
     <carrier_config gid1="EEFF" mcc="234" mnc="30">
         <string-array name="s_preferred_network_mode_marshal_string_array" num="2">
             <item value="26" />
             <item value="9" />
         </string-array>
+    </carrier_config>
+    <carrier_config board="taro" gid1="EEFF" mcc="234" mnc="30">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
+    </carrier_config>
+    <carrier_config device="XQ-CC54" gid1="EEFF" mcc="234" mnc="30">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="234" mnc="33">
         <boolean name="show_wifi_calling_icon_in_status_bar_bool" value="false" />
@@ -3286,12 +3450,6 @@
         <int name="wfc_data_spn_format_idx_int" value="1" />
         <int name="wfc_spn_format_idx_int" value="1" />
     </carrier_config>
-    <carrier_config board="taro" mcc="234" mnc="33">
-        <boolean name="hide_preferred_network_type_bool" value="false" />
-    </carrier_config>
-    <carrier_config device="XQ-CC54" mcc="234" mnc="33">
-        <boolean name="hide_preferred_network_type_bool" value="false" />
-    </carrier_config>
     <carrier_config gid1="B3" mcc="234" mnc="33">
         <boolean name="carrier_name_override_bool" value="true" />
     </carrier_config>
@@ -3301,11 +3459,23 @@
             <item value="9" />
         </string-array>
     </carrier_config>
+    <carrier_config board="taro" gid1="EC" mcc="234" mnc="33">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
+    </carrier_config>
+    <carrier_config device="XQ-CC54" gid1="EC" mcc="234" mnc="33">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
+    </carrier_config>
     <carrier_config gid1="ECFF" mcc="234" mnc="33">
         <string-array name="s_preferred_network_mode_marshal_string_array" num="2">
             <item value="26" />
             <item value="9" />
         </string-array>
+    </carrier_config>
+    <carrier_config board="taro" gid1="ECFF" mcc="234" mnc="33">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
+    </carrier_config>
+    <carrier_config device="XQ-CC54" gid1="ECFF" mcc="234" mnc="33">
+        <boolean name="hide_preferred_network_type_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="234" mnc="38">
         <string-array name="gsm_nonroaming_networks_string_array" num="2">
@@ -3623,6 +3793,7 @@
         <string-array name="wifi.network_profiles_string_array" num="1">
             <item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>                          &lt;WifiNetwork>                          &lt;SSID>homerun1x&lt;/SSID>                          &lt;Credential>                              &lt;SIM>                                  &lt;EAPType>18&lt;/EAPType>                              &lt;/SIM>                          &lt;/Credential>                          &lt;/WifiNetwork>" />
         </string-array>
+        <int name="maxMessageSize" value="2097152" />
     </carrier_config>
     <carrier_config mcc="240">
         <boolean name="groupChatDefaultsToMMS" value="false" />
@@ -3659,6 +3830,7 @@
         <string-array name="wifi.network_profiles_string_array" num="1">
             <item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>                          &lt;WifiNetwork>                          &lt;SSID>Telia wifi1x&lt;/SSID>                          &lt;Credential>                              &lt;SIM>                                  &lt;EAPType>18&lt;/EAPType>                              &lt;/SIM>                          &lt;/Credential>                          &lt;/WifiNetwork>" />
         </string-array>
+        <int name="maxMessageSize" value="2097152" />
     </carrier_config>
     <carrier_config mcc="240" mnc="02">
         <boolean name="editable_wfc_roaming_mode_bool" value="true" />
@@ -3670,6 +3842,7 @@
             <item value="capabilities=internet|enterprise|dun|ims|fota, retry_interval=2500|3000|                 5000|10000|15000|20000|40000|60000|120000|240000|600000|1200000|1800000,                 maximum_retries=20" />
         </string-array>
         <int name="carrier_default_wfc_ims_mode_int" value="1" />
+        <int name="carrier_default_wfc_ims_roaming_mode_int" value="1" />
         <int name="maxMessageSize" value="2097152" />
         <string-array name="carrier_metered_apn_types_strings" num="3">
             <item value="default" />
@@ -3820,6 +3993,7 @@
             <item value="26" />
             <item value="23" />
         </string-array>
+        <boolean name="vonr_enabled_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="242">
         <boolean name="groupChatDefaultsToMMS" value="false" />
@@ -3854,7 +4028,7 @@
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="gsm_cdma_calls_can_be_hd_audio" value="true" />
-        <int name="maxMessageSize" value="1024000" />
+        <int name="maxMessageSize" value="2097152" />
         <boolean name="s_config_enable_ut_bool" value="true" />
         <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
             <item value="GSM" />
@@ -3893,6 +4067,7 @@
             <item value="dun" />
             <item value="supl" />
         </string-array>
+        <int name="maxMessageSize" value="2097152" />
     </carrier_config>
     <carrier_config mcc="242" mnc="06">
         <string-array name="non_roaming_operator_string_array" num="1">
@@ -3930,6 +4105,7 @@
         <boolean name="gsm_cdma_calls_can_be_hd_audio" value="true" />
         <boolean name="s_config_enable_ut_bool" value="true" />
         <boolean name="s_config_enable_ut_only_when_ims_registered_bool" value="true" />
+        <boolean name="s_config_display_5g_sa_switch_bool" value="true" />
         <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
             <item value="GSM" />
             <item value="3G" />
@@ -3939,6 +4115,12 @@
             <item value="TDSCDMA" />
             <item value="5G" />
         </string-array>
+    </carrier_config>
+    <carrier_config board="taro" mcc="244" mnc="05">
+        <boolean name="s_config_display_5g_sa_switch_bool" value="false" />
+    </carrier_config>
+    <carrier_config board="holi" mcc="244" mnc="05">
+        <boolean name="s_config_display_5g_sa_switch_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="244" mnc="12">
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
@@ -3956,6 +4138,15 @@
             <item value="TDSCDMA" />
             <item value="5G" />
         </string-array>
+    </carrier_config>
+    <carrier_config mcc="244" mnc="21">
+        <boolean name="s_config_display_5g_sa_switch_bool" value="true" />
+    </carrier_config>
+    <carrier_config board="taro" mcc="244" mnc="21">
+        <boolean name="s_config_display_5g_sa_switch_bool" value="false" />
+    </carrier_config>
+    <carrier_config board="holi" mcc="244" mnc="21">
+        <boolean name="s_config_display_5g_sa_switch_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="244" mnc="91">
         <boolean name="call_barring_visibility_bool" value="false" />
@@ -3979,6 +4170,7 @@
             <item value="dun" />
             <item value="supl" />
         </string-array>
+        <int name="maxMessageSize" value="2097152" />
     </carrier_config>
     <carrier_config mcc="246">
         <boolean name="groupChatDefaultsToMMS" value="false" />
@@ -4007,6 +4199,7 @@
             <item value="dun" />
             <item value="supl" />
         </string-array>
+        <int name="maxMessageSize" value="2097152" />
     </carrier_config>
     <carrier_config mcc="247" mnc="01">
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -4050,6 +4243,7 @@
         <int name="carrier_default_wfc_ims_mode_int" value="1" />
         <int name="wfc_data_spn_format_idx_int" value="6" />
         <int name="wfc_spn_format_idx_int" value="6" />
+        <int name="maxMessageSize" value="2097152" />
     </carrier_config>
     <carrier_config board="kona" mcc="248" mnc="01">
         <boolean name="carrier_wfc_ims_available_bool" value="false" />
@@ -4510,6 +4704,12 @@
             <item value="TDSCDMA" />
             <item value="5G" />
         </string-array>
+        <string-array name="s_preferred_network_mode_marshal_string_array" num="4">
+            <item value="26" />
+            <item value="9" />
+            <item value="0" />
+            <item value="1" />
+        </string-array>
         <int name="smsToMmsTextThreshold" value="-1" />
         <boolean name="smsUsesSimpleCharactersOnly" value="true" />
         <int name="wfc_data_spn_format_idx_int" value="1" />
@@ -4542,6 +4742,7 @@
             <item value="default" />
             <item value="ia" />
         </string-array>
+        <boolean name="s_config_enable_side_car_for_5g_icon_bool" value="true" />
     </carrier_config>
     <carrier_config board="kona" mcc="262" mnc="03">
         <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
@@ -4565,6 +4766,10 @@
             <item value="5G" />
         </string-array>
         <boolean name="show_4g_for_lte_data_icon_bool" value="true" />
+        <boolean name="s_config_enable_side_car_for_5g_icon_bool" value="false" />
+    </carrier_config>
+    <carrier_config board="holi" mcc="262" mnc="03">
+        <boolean name="s_config_enable_side_car_for_5g_icon_bool" value="false" />
     </carrier_config>
     <carrier_config device="XQ-CC54" mcc="262" mnc="03">
         <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
@@ -4604,6 +4809,7 @@
             <item value="default" />
             <item value="ia" />
         </string-array>
+        <boolean name="s_config_enable_side_car_for_5g_icon_bool" value="true" />
     </carrier_config>
     <carrier_config board="kona" mcc="262" mnc="07">
         <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
@@ -4627,6 +4833,10 @@
             <item value="5G" />
         </string-array>
         <boolean name="show_4g_for_lte_data_icon_bool" value="true" />
+        <boolean name="s_config_enable_side_car_for_5g_icon_bool" value="false" />
+    </carrier_config>
+    <carrier_config board="holi" mcc="262" mnc="07">
+        <boolean name="s_config_enable_side_car_for_5g_icon_bool" value="false" />
     </carrier_config>
     <carrier_config device="XQ-CC54" mcc="262" mnc="07">
         <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
@@ -4677,7 +4887,10 @@
             <item value="1" />
         </string-array>
         <string name="default_vm_number_string">+4915566000333</string>
+        <string name="5g_icon_configuration_string">connected_mmwave:5g,connected:5g,not_restricted_rrc_idle:5g</string>
         <boolean name="show_4g_for_lte_data_icon_bool" value="false" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="s_config_enable_ut_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="262" mnc="77">
         <boolean name="show_wfc_location_privacy_policy_bool" value="false" />
@@ -4701,6 +4914,7 @@
         <boolean name="show_4g_for_lte_data_icon_bool" value="false" />
         <int name="wfc_data_spn_format_idx_int" value="1" />
         <int name="wfc_spn_format_idx_int" value="1" />
+        <boolean name="s_config_enable_side_car_for_5g_icon_bool" value="true" />
     </carrier_config>
     <carrier_config board="kona" mcc="262" mnc="77">
         <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
@@ -4724,6 +4938,10 @@
             <item value="5G" />
         </string-array>
         <boolean name="show_4g_for_lte_data_icon_bool" value="true" />
+        <boolean name="s_config_enable_side_car_for_5g_icon_bool" value="false" />
+    </carrier_config>
+    <carrier_config board="holi" mcc="262" mnc="77">
+        <boolean name="s_config_enable_side_car_for_5g_icon_bool" value="false" />
     </carrier_config>
     <carrier_config device="XQ-CC54" mcc="262" mnc="77">
         <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
@@ -4773,6 +4991,11 @@
             <item value="4G" />
             <item value="TDSCDMA" />
             <item value="5G" />
+        </string-array>
+        <string-array name="s_preferred_network_mode_marshal_string_array" num="3">
+            <item value="26" />
+            <item value="9" />
+            <item value="0" />
         </string-array>
         <int name="smsToMmsTextThreshold" value="5" />
         <boolean name="smsUsesSimpleCharactersOnly" value="true" />
@@ -4868,9 +5091,6 @@
         <boolean name="s_config_enable_ut_only_when_ims_registered_bool" value="true" />
         <boolean name="s_config_enable_ut_when_roaming_bool" value="false" />
     </carrier_config>
-    <carrier_config mcc="270" mnc="99">
-        <boolean name="carrier_volte_available_bool" value="false" />
-    </carrier_config>
     <carrier_config mcc="272">
         <string-array name="read_only_apn_types_string_array" num="0" />
         <string-array name="s_preferred_network_mode_marshal_string_array" num="3">
@@ -4904,6 +5124,9 @@
         <int name="wfc_spn_format_idx_int" value="1" />
         <int name="wfc_data_spn_format_idx_int" value="1" />
         <string name="default_vm_number_string">171</string>
+        <string-array name="s_preferred_network_mode_marshal_string_array" num="1">
+            <item value="26" />
+        </string-array>
     </carrier_config>
     <carrier_config mcc="272" mnc="02">
         <string-array name="telephony_data_setup_retry_rules_string_array" num="4">
@@ -5717,6 +5940,12 @@
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
     </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="160">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
+    </carrier_config>
     <carrier_config mcc="310" mnc="170">
         <boolean name="allow_hold_call_during_emergency_bool" value="false" />
         <boolean name="s_config_enable_side_car_for_5g_icon_bool" value="true" />
@@ -5987,6 +6216,12 @@
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
     </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="200">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
+    </carrier_config>
     <carrier_config mcc="310" mnc="210">
         <boolean name="csp_enabled_bool" value="true" />
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -6115,6 +6350,12 @@
             <item value="-99" />
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
+    </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="210">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
     </carrier_config>
     <carrier_config mcc="310" mnc="220">
         <boolean name="csp_enabled_bool" value="true" />
@@ -6245,6 +6486,12 @@
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
     </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="220">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
+    </carrier_config>
     <carrier_config mcc="310" mnc="230">
         <boolean name="csp_enabled_bool" value="true" />
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -6373,6 +6620,12 @@
             <item value="-99" />
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
+    </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="230">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
     </carrier_config>
     <carrier_config mcc="310" mnc="240">
         <boolean name="csp_enabled_bool" value="true" />
@@ -6503,6 +6756,12 @@
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
     </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="240">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
+    </carrier_config>
     <carrier_config mcc="310" mnc="250">
         <boolean name="csp_enabled_bool" value="true" />
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -6631,6 +6890,12 @@
             <item value="-99" />
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
+    </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="250">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
     </carrier_config>
     <carrier_config mcc="310" mnc="260">
         <boolean name="csp_enabled_bool" value="true" />
@@ -6761,6 +7026,12 @@
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
     </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="260">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
+    </carrier_config>
     <carrier_config mcc="310" mnc="270">
         <boolean name="csp_enabled_bool" value="true" />
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -6889,6 +7160,12 @@
             <item value="-99" />
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
+    </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="270">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
     </carrier_config>
     <carrier_config mcc="310" mnc="280">
         <boolean name="allow_hold_call_during_emergency_bool" value="false" />
@@ -7160,6 +7437,12 @@
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
     </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="300">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
+    </carrier_config>
     <carrier_config mcc="310" mnc="310">
         <boolean name="csp_enabled_bool" value="true" />
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -7288,6 +7571,12 @@
             <item value="-99" />
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
+    </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="310">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
     </carrier_config>
     <carrier_config mcc="310" mnc="380">
         <boolean name="allow_hold_call_during_emergency_bool" value="false" />
@@ -7700,6 +7989,12 @@
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
     </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="490">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
+    </carrier_config>
     <carrier_config mcc="310" mnc="530">
         <boolean name="csp_enabled_bool" value="true" />
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -7828,6 +8123,12 @@
             <item value="-99" />
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
+    </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="530">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
     </carrier_config>
     <carrier_config mcc="310" mnc="560">
         <boolean name="allow_hold_call_during_emergency_bool" value="false" />
@@ -8228,6 +8529,12 @@
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
     </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="590">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
+    </carrier_config>
     <carrier_config mcc="310" mnc="640">
         <boolean name="csp_enabled_bool" value="true" />
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -8357,6 +8664,12 @@
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
     </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="640">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
+    </carrier_config>
     <carrier_config mcc="310" mnc="660">
         <boolean name="csp_enabled_bool" value="true" />
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -8485,6 +8798,12 @@
             <item value="-99" />
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
+    </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="660">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
     </carrier_config>
     <carrier_config mcc="310" mnc="680">
         <boolean name="allow_hold_call_during_emergency_bool" value="false" />
@@ -8754,6 +9073,12 @@
             <item value="-99" />
         </int-array>
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
+    </carrier_config>
+    <carrier_config device="8A83DA4" mcc="310" mnc="800">
+        <string name="gps.supl_host">supl.geo.t-mobile.com</string>
+        <string name="gps.supl_ver">0x20004</string>
+        <string name="gps.lpp_profile">7</string>
+        <string name="gps.a_glonass_pos_protocol_select">6</string>
     </carrier_config>
     <carrier_config mcc="310" mnc="950">
         <boolean name="show_4glte_for_lte_data_icon_bool" value="true" />
@@ -9134,6 +9459,7 @@
             <item value="0" />
             <item value="0" />
         </int-array>
+        <int name="eutran_rssnr_hysteresis_db_int" value="0" />
         <int name="parameters_use_for_5g_nr_signal_bar_int" value="5" />
         <int-array name="5g_nr_ssrsrp_thresholds_int_array" num="4">
             <item value="-128" />
@@ -9147,7 +9473,7 @@
             <item value="0" />
             <item value="0" />
         </int-array>
-        <int name="s_config_hysteresis_db" value="0" />
+        <int name="ngran_sssinr_hysteresis_db_int" value="0" />
         <boolean name="carrier_volte_available_bool" value="true" />
         <string name="default_vm_number_string" />
         <boolean name="hide_lte_plus_data_icon_bool" value="true" />
@@ -9262,7 +9588,6 @@
         <boolean name="prevent_clir_activation_and_deactivation_code_bool" value="true" />
         <int name="parameters_used_for_lte_signal_bar_int" value="3" />
         <int name="parameters_use_for_5g_nr_signal_bar_int" value="1" />
-        <int name="s_config_hysteresis_db" value="1" />
         <int-array name="5g_nr_ssrsrp_thresholds_int_array" num="4">
             <item value="-125" />
             <item value="-120" />
@@ -9365,6 +9690,7 @@
             <item value="-118" />
             <item value="-113" />
         </int-array>
+        <int name="eutran_rsrq_hysteresis_db_int" value="1" />
         <long name="carrier_data_call_apn_retry_after_disconnect_long" value="100" />
         <int name="wifi.carrier_profiles_version_int" value="1" />
         <string-array name="wifi.network_profiles_string_array" num="1">
@@ -9400,6 +9726,7 @@
             <item value="19" />
             <item value="20" />
         </int-array>
+        <string name="gps.supl_host">dcm-supl.com</string>
     </carrier_config>
     <carrier_config device="SO-52D" mcc="440" mnc="10" sku="jp_dcm">
         <string name="gps.supl_host">dcm-supl.com</string>
@@ -9458,10 +9785,11 @@
         <string name="gps.lpp_profile">15</string>
         <string name="gps.a_glonass_pos_protocol_select">6</string>
     </carrier_config>
-    <carrier_config device="M4C4MMM" mcc="440" mnc="10" sku="jp_dcm">
-        <string name="gps.supl_host">supl.google.com</string>
+    <carrier_config device="SO-53D" mcc="440" mnc="10" sku="jp_dcm">
+        <boolean name="s_config_default_5g_sa_enabled_bool" value="false" />
     </carrier_config>
     <carrier_config board="taro" mcc="440" mnc="10" sku="jp_dcm">
+        <string name="gps.supl_host">dcm-supl.com</string>
         <string name="gps.supl_ver">0x20004</string>
         <string name="gps.lpp_profile">15</string>
         <string name="gps.a_glonass_pos_protocol_select">6</string>
@@ -9565,7 +9893,7 @@
             <item value="-1" />
             <item value="1" />
         </int-array>
-        <int name="s_config_hysteresis_db" value="0" />
+        <int name="eutran_rssnr_hysteresis_db_int" value="1" />
         <int name="parameters_used_for_lte_signal_bar_int" value="5" />
         <int name="parameters_use_for_5g_nr_signal_bar_int" value="5" />
         <int-array name="5g_nr_ssrsrp_thresholds_int_array" num="4">
@@ -9574,12 +9902,14 @@
             <item value="-121" />
             <item value="-117" />
         </int-array>
+        <int name="ngran_ssrsrp_hysteresis_db_int" value="1" />
         <int-array name="5g_nr_sssinr_thresholds_int_array" num="4">
             <item value="-19" />
             <item value="-3" />
             <item value="-1" />
             <item value="1" />
         </int-array>
+        <int name="ngran_sssinr_hysteresis_db_int" value="1" />
         <boolean name="show_single_operator_row_in_choose_network_setting_bool" value="true" />
         <boolean name="support_clir_network_default_bool" value="false" />
         <boolean name="support_conference_call_bool" value="true" />
@@ -9590,9 +9920,6 @@
         <boolean name="carrier_volte_available_bool" value="true" />
         <string name="gps.lpp_profile">0</string>
         <string name="call_redirection_service_component_name_string">com.sonymobile.supplementallyservice.sbm/.SbmCallRedirectionService</string>
-        <string-array name="carrier_certificate_string_array" num="1">
-            <item value="8CD14DE82459630273B8D4C4F0C7C042FA0EF419C2B76A0AAD3D7A0646B015B9" />
-        </string-array>
         <boolean name="carrier_force_disable_etws_cmas_test_bool" value="true" />
         <boolean name="hide_lte_plus_data_icon_bool" value="true" />
         <string-array name="s_preferred_network_mode_rat_names_string_array" num="7">
@@ -9622,6 +9949,7 @@
             <item value="-121" />
             <item value="-117" />
         </int-array>
+        <int name="eutran_rsrp_hysteresis_db_int" value="1" />
     </carrier_config>
     <carrier_config board="kalama" mcc="440" mnc="20" sku="jp_sbm">
         <string name="gps.supl_ver">0x20004</string>
@@ -9681,12 +10009,6 @@
         <string-array name="wifi.network_profiles_string_array" num="1">
             <item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>                          &lt;WifiNetwork>                          &lt;SSID>au_Wi-Fi2&lt;/SSID>                          &lt;Credential>                              &lt;SIM>                                  &lt;EAPType>23&lt;/EAPType>                              &lt;/SIM>                          &lt;/Credential>                          &lt;/WifiNetwork>" />
         </string-array>
-        <string-array name="carrier_certificate_string_array" num="4">
-            <item value="108897103871B684844AA7C791E0C812AB3966576FB5D3713C2D11794C0600AD" />
-            <item value="5EA3181DF228B4F8B0DECC10B21783F8C6C397F1290F2395FE3E6FDB2B52E991" />
-            <item value="891ABE3F0A0D794AD46200DC2374AFF61AFA82711C360EE0CB49C3E6BB2BA006" />
-            <item value="1001568BB4A4E65F68C8B0F2E5C9EBC97FF719898F39E421DAF29A8DACEAAF1B" />
-        </string-array>
         <boolean name="allow_emergency_numbers_in_call_log_bool" value="true" />
         <string-array name="telephony_data_setup_retry_rules_string_array" num="4">
             <item value="capabilities=eims, retry_interval=1000, maximum_retries=20" />
@@ -9698,23 +10020,13 @@
         <boolean name="s_config_disable_tether_after_failed_bool" value="true" />
         <string name="default_vm_number_roaming_and_ims_unregistered_string">+819044441415</string>
         <boolean name="allow_hold_call_during_emergency_bool" value="false" />
-        <int-array name="disconnect_cause_play_busytone_int_array" num="8">
-            <item value="2" />
-            <item value="4" />
-            <item value="8" />
-            <item value="9" />
-            <item value="12" />
-            <item value="13" />
-            <item value="18" />
-            <item value="60" />
-        </int-array>
         <int-array name="lte_rssnr_thresholds_int_array" num="4">
             <item value="-5" />
             <item value="-3" />
             <item value="0" />
             <item value="3" />
         </int-array>
-        <int name="s_config_hysteresis_db" value="1" />
+        <int name="eutran_rssnr_hysteresis_db_int" value="1" />
         <int name="parameters_used_for_lte_signal_bar_int" value="5" />
         <boolean name="show_wfc_location_privacy_policy_bool" value="false" />
         <boolean name="support_clir_network_default_bool" value="false" />
@@ -9789,12 +10101,6 @@
     </carrier_config>
     <carrier_config gid1="20" mcc="440" mnc="51" sku="jp_kddi">
         <string name="default_preferred_apn_name_string">uqmobile.jp</string>
-        <string-array name="carrier_certificate_string_array" num="4">
-            <item value="108897103871B684844AA7C791E0C812AB3966576FB5D3713C2D11794C0600AD" />
-            <item value="5EA3181DF228B4F8B0DECC10B21783F8C6C397F1290F2395FE3E6FDB2B52E991" />
-            <item value="891ABE3F0A0D794AD46200DC2374AFF61AFA82711C360EE0CB49C3E6BB2BA006" />
-            <item value="1001568BB4A4E65F68C8B0F2E5C9EBC97FF719898F39E421DAF29A8DACEAAF1B" />
-        </string-array>
         <boolean name="allow_emergency_numbers_in_call_log_bool" value="true" />
         <string-array name="telephony_data_setup_retry_rules_string_array" num="4">
             <item value="capabilities=eims, retry_interval=1000, maximum_retries=20" />
@@ -9806,23 +10112,13 @@
         <boolean name="s_config_disable_tether_after_failed_bool" value="true" />
         <string name="default_vm_number_roaming_and_ims_unregistered_string">+819044441415</string>
         <boolean name="allow_hold_call_during_emergency_bool" value="false" />
-        <int-array name="disconnect_cause_play_busytone_int_array" num="8">
-            <item value="2" />
-            <item value="4" />
-            <item value="8" />
-            <item value="9" />
-            <item value="12" />
-            <item value="13" />
-            <item value="18" />
-            <item value="60" />
-        </int-array>
         <int-array name="lte_rssnr_thresholds_int_array" num="4">
             <item value="-5" />
             <item value="-3" />
             <item value="0" />
             <item value="3" />
         </int-array>
-        <int name="s_config_hysteresis_db" value="1" />
+        <int name="eutran_rssnr_hysteresis_db_int" value="1" />
         <int name="parameters_used_for_lte_signal_bar_int" value="5" />
         <boolean name="show_wfc_location_privacy_policy_bool" value="false" />
         <boolean name="support_clir_network_default_bool" value="false" />
@@ -9875,12 +10171,6 @@
     </carrier_config>
     <carrier_config gid1="26" mcc="440" mnc="51" sku="jp_kddi">
         <string name="default_preferred_apn_name_string">povo.jp</string>
-        <string-array name="carrier_certificate_string_array" num="4">
-            <item value="108897103871B684844AA7C791E0C812AB3966576FB5D3713C2D11794C0600AD" />
-            <item value="5EA3181DF228B4F8B0DECC10B21783F8C6C397F1290F2395FE3E6FDB2B52E991" />
-            <item value="891ABE3F0A0D794AD46200DC2374AFF61AFA82711C360EE0CB49C3E6BB2BA006" />
-            <item value="1001568BB4A4E65F68C8B0F2E5C9EBC97FF719898F39E421DAF29A8DACEAAF1B" />
-        </string-array>
         <boolean name="allow_emergency_numbers_in_call_log_bool" value="true" />
         <string-array name="telephony_data_setup_retry_rules_string_array" num="4">
             <item value="capabilities=eims, retry_interval=1000, maximum_retries=20" />
@@ -9892,23 +10182,13 @@
         <boolean name="s_config_disable_tether_after_failed_bool" value="true" />
         <string name="default_vm_number_roaming_and_ims_unregistered_string">+819044441415</string>
         <boolean name="allow_hold_call_during_emergency_bool" value="false" />
-        <int-array name="disconnect_cause_play_busytone_int_array" num="8">
-            <item value="2" />
-            <item value="4" />
-            <item value="8" />
-            <item value="9" />
-            <item value="12" />
-            <item value="13" />
-            <item value="18" />
-            <item value="60" />
-        </int-array>
         <int-array name="lte_rssnr_thresholds_int_array" num="4">
             <item value="-5" />
             <item value="-3" />
             <item value="0" />
             <item value="3" />
         </int-array>
-        <int name="s_config_hysteresis_db" value="1" />
+        <int name="eutran_rssnr_hysteresis_db_int" value="1" />
         <int name="parameters_used_for_lte_signal_bar_int" value="5" />
         <boolean name="show_wfc_location_privacy_policy_bool" value="false" />
         <boolean name="support_clir_network_default_bool" value="false" />
@@ -9994,12 +10274,6 @@
     </carrier_config>
     <carrier_config gid1="10" mcc="440" mnc="54" sku="jp_kddi">
         <string name="gps.supl_host">location2.kddi.ne.jp</string>
-        <string-array name="carrier_certificate_string_array" num="4">
-            <item value="108897103871B684844AA7C791E0C812AB3966576FB5D3713C2D11794C0600AD" />
-            <item value="5EA3181DF228B4F8B0DECC10B21783F8C6C397F1290F2395FE3E6FDB2B52E991" />
-            <item value="891ABE3F0A0D794AD46200DC2374AFF61AFA82711C360EE0CB49C3E6BB2BA006" />
-            <item value="1001568BB4A4E65F68C8B0F2E5C9EBC97FF719898F39E421DAF29A8DACEAAF1B" />
-        </string-array>
         <int name="imsi_key_availability_int" value="2" />
         <string name="imsi_key_download_url_string">https://wificert.kddi.com/android</string>
         <boolean name="allow_metered_network_for_cert_download_bool" value="true" />
@@ -10019,23 +10293,13 @@
         <boolean name="s_config_disable_tether_after_failed_bool" value="true" />
         <string name="default_vm_number_roaming_and_ims_unregistered_string">+819044441415</string>
         <boolean name="allow_hold_call_during_emergency_bool" value="false" />
-        <int-array name="disconnect_cause_play_busytone_int_array" num="8">
-            <item value="2" />
-            <item value="4" />
-            <item value="8" />
-            <item value="9" />
-            <item value="12" />
-            <item value="13" />
-            <item value="18" />
-            <item value="60" />
-        </int-array>
         <int-array name="lte_rssnr_thresholds_int_array" num="4">
             <item value="-5" />
             <item value="-3" />
             <item value="0" />
             <item value="3" />
         </int-array>
-        <int name="s_config_hysteresis_db" value="1" />
+        <int name="eutran_rssnr_hysteresis_db_int" value="1" />
         <int name="parameters_used_for_lte_signal_bar_int" value="5" />
         <int name="parameters_use_for_5g_nr_signal_bar_int" value="5" />
         <int-array name="5g_nr_ssrsrp_thresholds_int_array" num="4">
@@ -10050,6 +10314,7 @@
             <item value="0" />
             <item value="3" />
         </int-array>
+        <int name="ngran_sssinr_hysteresis_db_int" value="1" />
         <boolean name="show_wfc_location_privacy_policy_bool" value="false" />
         <boolean name="support_clir_network_default_bool" value="false" />
         <boolean name="carrier_name_override_bool" value="true" />
@@ -10122,12 +10387,6 @@
     </carrier_config>
     <carrier_config gid1="20" mcc="440" mnc="54" sku="jp_kddi">
         <string name="default_preferred_apn_name_string">uqmobile.jp</string>
-        <string-array name="carrier_certificate_string_array" num="4">
-            <item value="108897103871B684844AA7C791E0C812AB3966576FB5D3713C2D11794C0600AD" />
-            <item value="5EA3181DF228B4F8B0DECC10B21783F8C6C397F1290F2395FE3E6FDB2B52E991" />
-            <item value="891ABE3F0A0D794AD46200DC2374AFF61AFA82711C360EE0CB49C3E6BB2BA006" />
-            <item value="1001568BB4A4E65F68C8B0F2E5C9EBC97FF719898F39E421DAF29A8DACEAAF1B" />
-        </string-array>
         <boolean name="allow_emergency_numbers_in_call_log_bool" value="true" />
         <string-array name="telephony_data_setup_retry_rules_string_array" num="4">
             <item value="capabilities=eims, retry_interval=1000, maximum_retries=20" />
@@ -10139,23 +10398,13 @@
         <boolean name="s_config_disable_tether_after_failed_bool" value="true" />
         <string name="default_vm_number_roaming_and_ims_unregistered_string">+819044441415</string>
         <boolean name="allow_hold_call_during_emergency_bool" value="false" />
-        <int-array name="disconnect_cause_play_busytone_int_array" num="8">
-            <item value="2" />
-            <item value="4" />
-            <item value="8" />
-            <item value="9" />
-            <item value="12" />
-            <item value="13" />
-            <item value="18" />
-            <item value="60" />
-        </int-array>
         <int-array name="lte_rssnr_thresholds_int_array" num="4">
             <item value="-5" />
             <item value="-3" />
             <item value="0" />
             <item value="3" />
         </int-array>
-        <int name="s_config_hysteresis_db" value="1" />
+        <int name="eutran_rssnr_hysteresis_db_int" value="1" />
         <int name="parameters_used_for_lte_signal_bar_int" value="5" />
         <int name="parameters_use_for_5g_nr_signal_bar_int" value="5" />
         <int-array name="5g_nr_ssrsrp_thresholds_int_array" num="4">
@@ -10170,6 +10419,7 @@
             <item value="0" />
             <item value="3" />
         </int-array>
+        <int name="ngran_sssinr_hysteresis_db_int" value="1" />
         <boolean name="show_wfc_location_privacy_policy_bool" value="false" />
         <boolean name="support_clir_network_default_bool" value="false" />
         <boolean name="carrier_name_override_bool" value="true" />
@@ -10221,12 +10471,6 @@
     </carrier_config>
     <carrier_config gid1="26" mcc="440" mnc="54" sku="jp_kddi">
         <string name="default_preferred_apn_name_string">povo.jp</string>
-        <string-array name="carrier_certificate_string_array" num="4">
-            <item value="108897103871B684844AA7C791E0C812AB3966576FB5D3713C2D11794C0600AD" />
-            <item value="5EA3181DF228B4F8B0DECC10B21783F8C6C397F1290F2395FE3E6FDB2B52E991" />
-            <item value="891ABE3F0A0D794AD46200DC2374AFF61AFA82711C360EE0CB49C3E6BB2BA006" />
-            <item value="1001568BB4A4E65F68C8B0F2E5C9EBC97FF719898F39E421DAF29A8DACEAAF1B" />
-        </string-array>
         <boolean name="allow_emergency_numbers_in_call_log_bool" value="true" />
         <string-array name="telephony_data_setup_retry_rules_string_array" num="4">
             <item value="capabilities=eims, retry_interval=1000, maximum_retries=20" />
@@ -10238,23 +10482,13 @@
         <boolean name="s_config_disable_tether_after_failed_bool" value="true" />
         <string name="default_vm_number_roaming_and_ims_unregistered_string">+819044441415</string>
         <boolean name="allow_hold_call_during_emergency_bool" value="false" />
-        <int-array name="disconnect_cause_play_busytone_int_array" num="8">
-            <item value="2" />
-            <item value="4" />
-            <item value="8" />
-            <item value="9" />
-            <item value="12" />
-            <item value="13" />
-            <item value="18" />
-            <item value="60" />
-        </int-array>
         <int-array name="lte_rssnr_thresholds_int_array" num="4">
             <item value="-5" />
             <item value="-3" />
             <item value="0" />
             <item value="3" />
         </int-array>
-        <int name="s_config_hysteresis_db" value="1" />
+        <int name="eutran_rssnr_hysteresis_db_int" value="1" />
         <int name="parameters_used_for_lte_signal_bar_int" value="5" />
         <int name="parameters_use_for_5g_nr_signal_bar_int" value="5" />
         <int-array name="5g_nr_ssrsrp_thresholds_int_array" num="4">
@@ -10269,6 +10503,7 @@
             <item value="0" />
             <item value="3" />
         </int-array>
+        <int name="ngran_sssinr_hysteresis_db_int" value="1" />
         <boolean name="show_wfc_location_privacy_policy_bool" value="false" />
         <boolean name="support_clir_network_default_bool" value="false" />
         <boolean name="carrier_name_override_bool" value="true" />
@@ -10464,6 +10699,7 @@
             <item value="0" />
             <item value="0" />
         </int-array>
+        <int name="eutran_rssnr_hysteresis_db_int" value="0" />
         <int name="parameters_use_for_5g_nr_signal_bar_int" value="5" />
         <int-array name="5g_nr_ssrsrp_thresholds_int_array" num="4">
             <item value="-128" />
@@ -10477,7 +10713,7 @@
             <item value="0" />
             <item value="0" />
         </int-array>
-        <int name="s_config_hysteresis_db" value="0" />
+        <int name="ngran_sssinr_hysteresis_db_int" value="0" />
         <boolean name="carrier_volte_available_bool" value="true" />
         <string name="default_vm_number_string" />
         <boolean name="hide_lte_plus_data_icon_bool" value="true" />
@@ -10793,7 +11029,6 @@
         <string-array name="wifi.network_profiles_string_array" num="1">
             <item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>                          &lt;WifiNetwork>                          &lt;SSID>3HKWi-Fi&lt;/SSID>                          &lt;Credential>                              &lt;SIM>                                  &lt;EAPType>18&lt;/EAPType>                              &lt;/SIM>                          &lt;/Credential>                          &lt;/WifiNetwork>" />
         </string-array>
-        <boolean name="s_config_enable_ut_bool" value="false" />
     </carrier_config>
     <carrier_config board="taro" mcc="454" mnc="03">
         <string-array name="s_preferred_network_mode_marshal_string_array" num="5">
@@ -10822,12 +11057,6 @@
         <string name="carrier_name_string">Mo</string>
         <boolean name="carrier_name_override_bool" value="true" />
         <boolean name="enable_carrier_display_name_resolver_bool" value="false" />
-    </carrier_config>
-    <carrier_config device="XQ-DE72" mcc="454" mnc="03">
-        <boolean name="s_config_enable_ut_bool" value="true" />
-    </carrier_config>
-    <carrier_config device="IC2244N" mcc="454" mnc="03">
-        <boolean name="s_config_enable_ut_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="454" mnc="04">
         <boolean name="allow_emergency_numbers_in_call_log_bool" value="true" />
@@ -10869,13 +11098,6 @@
         <int name="wfc_data_spn_format_idx_int" value="1" />
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
         <boolean name="carrier_default_wfc_ims_roaming_enabled_bool" value="false" />
-        <boolean name="s_config_enable_ut_bool" value="false" />
-    </carrier_config>
-    <carrier_config device="XQ-DE72" mcc="454" mnc="04">
-        <boolean name="s_config_enable_ut_bool" value="true" />
-    </carrier_config>
-    <carrier_config device="IC2244N" mcc="454" mnc="04">
-        <boolean name="s_config_enable_ut_bool" value="true" />
     </carrier_config>
     <carrier_config board="taro" mcc="454" mnc="04">
         <string-array name="s_preferred_network_mode_marshal_string_array" num="5">
@@ -10935,13 +11157,6 @@
         <int name="wfc_data_spn_format_idx_int" value="1" />
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
         <boolean name="carrier_default_wfc_ims_roaming_enabled_bool" value="false" />
-        <boolean name="s_config_enable_ut_bool" value="false" />
-    </carrier_config>
-    <carrier_config device="XQ-DE72" mcc="454" mnc="05">
-        <boolean name="s_config_enable_ut_bool" value="true" />
-    </carrier_config>
-    <carrier_config device="IC2244N" mcc="454" mnc="05">
-        <boolean name="s_config_enable_ut_bool" value="true" />
     </carrier_config>
     <carrier_config board="taro" mcc="454" mnc="05">
         <string-array name="s_preferred_network_mode_marshal_string_array" num="5">
@@ -11315,13 +11530,6 @@
         <int name="wfc_data_spn_format_idx_int" value="1" />
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
         <boolean name="carrier_default_wfc_ims_roaming_enabled_bool" value="false" />
-        <boolean name="s_config_enable_ut_bool" value="false" />
-    </carrier_config>
-    <carrier_config device="XQ-DE72" mcc="454" mnc="14">
-        <boolean name="s_config_enable_ut_bool" value="true" />
-    </carrier_config>
-    <carrier_config device="IC2244N" mcc="454" mnc="14">
-        <boolean name="s_config_enable_ut_bool" value="true" />
     </carrier_config>
     <carrier_config board="taro" mcc="454" mnc="14">
         <string-array name="s_preferred_network_mode_marshal_string_array" num="5">
@@ -12637,8 +12845,6 @@
             <item value="-110" />
             <item value="-100" />
         </int-array>
-    </carrier_config>
-    <carrier_config board="kalama" mcc="466">
         <boolean name="s_config_disable_2g_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="466" mnc="01">
@@ -13119,21 +13325,35 @@
     <carrier_config mcc="502" mnc="12">
         <boolean name="s_config_enable_ut_bool" value="true" />
         <string name="s_config_enable_ut_allowed_networks_string">2G,3G,LTE,NR</string>
+        <boolean name="call_barring_supports_deactivate_all_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="520">
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="s_show_volte_icon_in_status_bar_bool" value="true" />
+        <boolean name="s_config_display_5g_sa_switch_bool" value="true" />
+    </carrier_config>
+    <carrier_config board="taro" mcc="520">
+        <boolean name="s_config_display_5g_sa_switch_bool" value="false" />
+    </carrier_config>
+    <carrier_config device="XQ-CC72" mcc="520">
+        <boolean name="s_config_display_5g_sa_switch_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="520" mnc="00">
         <boolean name="s_config_enable_ut_bool" value="true" />
         <string name="s_config_enable_ut_allowed_networks_string">2G,3G,LTE,NR</string>
+        <int name="wifi.carrier_profiles_version_int" value="1" />
+        <string-array name="wifi.network_profiles_string_array" num="1">
+            <item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>                          &lt;WifiNetwork>                          &lt;SSID>   .@ TrueMove H&lt;/SSID>                          &lt;Credential>                              &lt;SIM>                                  &lt;EAPType>18&lt;/EAPType>                              &lt;/SIM>                          &lt;/Credential>                          &lt;/WifiNetwork>" />
+        </string-array>
+        <boolean name="call_barring_supports_deactivate_all_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="520" mnc="01">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="s_config_enable_ut_bool" value="true" />
         <string name="s_config_enable_ut_allowed_networks_string">2G,3G,LTE,NR</string>
         <boolean name="s_config_enable_ut_when_roaming_bool" value="false" />
+        <boolean name="call_barring_supports_deactivate_all_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="520" mnc="03">
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -13142,61 +13362,79 @@
         <boolean name="s_config_enable_ut_when_roaming_bool" value="false" />
         <int name="wifi.carrier_profiles_version_int" value="1" />
         <string-array name="wifi.network_profiles_string_array" num="1">
-            <item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>                          &lt;WifiNetwork>                          &lt;SSID>AIS SMART Login&lt;/SSID>                          &lt;Credential>                              &lt;SIM>                                  &lt;EAPType>18&lt;/EAPType>                              &lt;/SIM>                          &lt;/Credential>                          &lt;/WifiNetwork>" />
+            <item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>                          &lt;WifiNetwork>                          &lt;SSID>  AIS SMART Login&lt;/SSID>                          &lt;Credential>                              &lt;SIM>                                  &lt;EAPType>18&lt;/EAPType>                              &lt;/SIM>                          &lt;/Credential>                          &lt;/WifiNetwork>" />
         </string-array>
+        <boolean name="call_barring_supports_deactivate_all_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="520" mnc="04">
         <boolean name="s_config_enable_ut_bool" value="true" />
         <string name="s_config_enable_ut_allowed_networks_string">2G,3G,LTE,NR</string>
         <int name="wifi.carrier_profiles_version_int" value="1" />
         <string-array name="wifi.network_profiles_string_array" num="1">
-            <item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>                          &lt;WifiNetwork>                          &lt;SSID>.@ TrueMove H&lt;/SSID>                          &lt;Credential>                              &lt;SIM>                                  &lt;EAPType>18&lt;/EAPType>                              &lt;/SIM>                          &lt;/Credential>                          &lt;/WifiNetwork>" />
+            <item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>                          &lt;WifiNetwork>                          &lt;SSID>   .@ TrueMove H&lt;/SSID>                          &lt;Credential>                              &lt;SIM>                                  &lt;EAPType>18&lt;/EAPType>                              &lt;/SIM>                          &lt;/Credential>                          &lt;/WifiNetwork>" />
         </string-array>
+        <boolean name="call_barring_supports_deactivate_all_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="520" mnc="05">
         <boolean name="s_config_enable_ut_bool" value="true" />
         <string name="s_config_enable_ut_allowed_networks_string">2G,3G,LTE,NR</string>
+        <boolean name="call_barring_supports_deactivate_all_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="520" mnc="15">
         <boolean name="s_config_enable_ut_bool" value="true" />
         <string name="s_config_enable_ut_allowed_networks_string">2G,3G,LTE,NR</string>
         <boolean name="s_config_enable_ut_when_roaming_bool" value="false" />
+        <boolean name="call_barring_supports_deactivate_all_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="520" mnc="18">
         <boolean name="s_config_enable_ut_bool" value="true" />
         <string name="s_config_enable_ut_allowed_networks_string">2G,3G,LTE,NR</string>
+        <boolean name="call_barring_supports_deactivate_all_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="520" mnc="47">
         <boolean name="s_config_enable_ut_bool" value="true" />
         <string name="s_config_enable_ut_allowed_networks_string">2G,3G,LTE,NR</string>
+        <boolean name="call_barring_supports_deactivate_all_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="525">
         <int name="parameters_used_for_lte_signal_bar_int" value="1" />
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="s_show_volte_icon_in_status_bar_bool" value="true" />
+        <boolean name="s_config_display_5g_sa_switch_bool" value="true" />
+    </carrier_config>
+    <carrier_config board="taro" mcc="525">
+        <boolean name="s_config_display_5g_sa_switch_bool" value="false" />
+    </carrier_config>
+    <carrier_config device="XQ-CC72" mcc="525">
+        <boolean name="s_config_display_5g_sa_switch_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="525" mnc="01">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="s_config_enable_ut_bool" value="true" />
         <string name="s_config_enable_ut_allowed_networks_string">2G,3G,LTE,NR</string>
+        <boolean name="call_barring_supports_deactivate_all_bool" value="false" />
     </carrier_config>
     <carrier_config mcc="525" mnc="03">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="s_config_enable_ut_bool" value="true" />
+        <boolean name="call_barring_supports_deactivate_all_bool" value="false" />
     </carrier_config>
     <carrier_config board="lito" mcc="525" mnc="03">
         <boolean name="carrier_volte_available_bool" value="false" />
         <boolean name="s_config_enable_ut_bool" value="false" />
+        <boolean name="call_barring_supports_deactivate_all_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="525" mnc="05">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="s_config_enable_ut_bool" value="true" />
         <boolean name="s_show_volte_icon_in_status_bar_bool" value="true" />
+        <boolean name="call_barring_supports_deactivate_all_bool" value="false" />
     </carrier_config>
     <carrier_config board="lito" mcc="525" mnc="05">
         <boolean name="carrier_volte_available_bool" value="false" />
         <boolean name="s_config_enable_ut_bool" value="false" />
         <boolean name="s_show_volte_icon_in_status_bar_bool" value="false" />
+        <boolean name="call_barring_supports_deactivate_all_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="647" mnc="00">
         <string-array name="ratchet_rat_families" num="3">
@@ -13311,5 +13549,31 @@
             <item value="9" />
             <item value="26" />
         </string-array>
+    </carrier_config>
+    <carrier_config device="8A83DA4">
+        <boolean name="carrier_allow_turnoff_ims_bool" value="false" />
+        <boolean name="carrier_volte_available_bool" value="false" />
+        <boolean name="vonr_enabled_bool" value="false" />
+        <boolean name="carrier_wfc_ims_available_bool" value="false" />
+        <boolean name="rtt_supported_bool" value="false" />
+        <boolean name="s_config_enable_ut_bool" value="false" />
+        <boolean name="s_show_enhanced_4g_lte_qs_bool" value="false" />
+        <boolean name="s_show_wfc_qs_bool" value="false" />
+        <boolean name="hide_enhanced_4g_lte_bool" value="true" />
+        <boolean name="s_show_volte_icon_in_status_bar_bool" value="false" />
+        <boolean name="hide_enable_2g_bool" value="true" />
+    </carrier_config>
+    <carrier_config device="PQ-1">
+        <boolean name="carrier_allow_turnoff_ims_bool" value="false" />
+        <boolean name="carrier_volte_available_bool" value="false" />
+        <boolean name="vonr_enabled_bool" value="false" />
+        <boolean name="carrier_wfc_ims_available_bool" value="false" />
+        <boolean name="rtt_supported_bool" value="false" />
+        <boolean name="s_config_enable_ut_bool" value="false" />
+        <boolean name="s_show_enhanced_4g_lte_qs_bool" value="false" />
+        <boolean name="s_show_wfc_qs_bool" value="false" />
+        <boolean name="hide_enhanced_4g_lte_bool" value="true" />
+        <boolean name="s_show_volte_icon_in_status_bar_bool" value="false" />
+        <boolean name="hide_enable_2g_bool" value="true" />
     </carrier_config>
 </carrier_config_list>

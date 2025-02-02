@@ -4,6 +4,7 @@
 //
 
 runtime_resource_overlay {
-    name: "SonyYodoSystemUIResCommon",
+    name: "SonyNagaraSettingsProviderOverlayCommon",
     device_specific: true,
 }
+

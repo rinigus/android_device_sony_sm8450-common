@@ -157,20 +157,16 @@ PRODUCT_PACKAGES += \
     libqdMetaData.system \
     libsdmcore \
     libsdmutils \
-    vendor.display.config@1.0 \
-    vendor.display.config@1.11.vendor \
+    libmemutils \
+    vendor.display.config@1.5 \
+    vendor.display.config@1.15.vendor \
     vendor.display.config@2.0 \
     vendor.display.config@2.0.vendor \
     vendor.qti.hardware.display.allocator-service \
     vendor.qti.hardware.display.composer-service \
     vendor.qti.hardware.display.config-V5-ndk \
-    vendor.qti.hardware.display.config-V1-ndk.vendor \
-    vendor.qti.hardware.display.config-V2-ndk.vendor \
-    vendor.qti.hardware.display.config-V3-ndk.vendor \
-    vendor.qti.hardware.display.config-V4-ndk.vendor \
-    vendor.qti.hardware.display.config-V5-ndk.vendor \
-    vendor.qti.hardware.display.config-V6-ndk.vendor \
     vendor.qti.hardware.display.demura-service \
+    vendor.qti.hardware.display.mapper@1.0.vendor \
     vendor.qti.hardware.display.mapper@1.1.vendor \
     vendor.qti.hardware.display.mapper@2.0.vendor \
     vendor.qti.hardware.display.mapper@3.0.vendor \
@@ -359,14 +355,12 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
     CarrierConfigResCommon \
+    SonyNagaraFrameworksResCommon \
+    SonyNagaraSettingsProviderOverlayCommon \
+    SonyNagaraSettingsResCommon \
+    SonyNagaraSystemUIResCommon \
+    SonyNagaraTelephonyResCommon \
     WifiResCommon
-    
-    # SonyYodoDeviceAsWebcamResCommon \
-    # SonyYodoFrameworksResCommon \
-    # SonyYodoSettingsProviderOverlayCommon \
-    # SonyYodoSettingsResCommon \
-    # SonyYodoSystemUIResCommon \
-    # SonyYodoTelephonyResCommon \
 
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
