@@ -258,6 +258,7 @@ VENDOR_SECURITY_PATCH := $(BOOT_SECURITY_PATCH)
 # Sepolicy
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 include hardware/sony/sepolicy/qti/SEPolicy.mk
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
 
 ## Based on config for sm8350
 ## Nagara is using AVB 1.2 (1.0)
