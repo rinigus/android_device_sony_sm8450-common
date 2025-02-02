@@ -24,6 +24,16 @@
         <fqname>@7.0::IEffectsFactory/default</fqname>
     </hal>
     <hal format="hidl">
+        <name>android.hardware.biometrics.fingerprint</name>
+        <transport>hwbinder</transport>
+        <version>2.1</version>
+        <interface>
+            <name>IBiometricsFingerprint</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@2.1::IBiometricsFingerprint/default</fqname>
+    </hal>
+    <hal format="hidl">
         <name>android.hardware.bluetooth</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -58,6 +68,11 @@
         <transport>hwbinder</transport>
         <fqname>@4.1::IKeymasterDevice/default</fqname>
     </hal>
+    <hal format="aidl">
+        <name>android.hardware.security.keymint</name>
+        <version>2</version>
+        <fqname>IRemotelyProvisionedComponent/default</fqname>
+    </hal>
     <hal format="hidl">
         <name>android.hardware.nfc</name>
         <transport>hwbinder</transport>
@@ -67,6 +82,12 @@
             <instance>default</instance>
         </interface>
         <fqname>@1.2::INfc/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.radio</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.2::ISap/slot1</fqname>
+        <fqname>@1.6::IRadio/slot1</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.secure_element</name>
@@ -140,6 +161,25 @@
         <fqname>@2.3::IUceService/com.qualcomm.qti.uceservice</fqname>
     </hal>
     <hal format="hidl">
+        <name>vendor.egistec.hardware.fingerprint</name>
+        <transport>hwbinder</transport>
+        <version>4.0</version>
+        <interface>
+            <name>IBiometricsFingerprintRbs</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@4.0::IBiometricsFingerprintRbs/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.nxp.hardware.nfc</name>
+        <transport>hwbinder</transport>
+        <version>2.0</version>
+        <interface>
+            <name>INqNfc</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
         <name>vendor.nxp.nxpnfc</name>
         <transport>hwbinder</transport>
         <version>2.0</version>
@@ -148,6 +188,56 @@
             <instance>default</instance>
         </interface>
         <fqname>@2.0::INxpNfc/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.semc.hardware.display</name>
+        <transport>hwbinder</transport>
+        <fqname>@2.5::IDisplay/default</fqname>
+        <fqname>@2.5::IFramerateController/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.semc.system.idd</name>
+        <transport>hwbinder</transport>
+        <version>1.1</version>
+        <interface>
+            <name>IIdd</name>
+            <instance>default</instance>
+            <instance>logreader</instance>
+        </interface>
+    </hal>
+    <hal format="aidl">
+        <name>vendor.somc.hardware.aidlmiscta</name>
+        <fqname>IMisctaGlobal/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.somc.hardware.miscta</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IMisctaGlobal</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IMisctaGlobal/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.somc.hardware.nfc</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ISomcNfc</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::ISomcNfc/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.somc.hardware.security.secd</name>
+        <transport>hwbinder</transport>
+        <version>1.1</version>
+        <interface>
+            <name>IDeviceSecurity</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.1::IDeviceSecurity/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.qti.data.factory</name>
@@ -414,14 +504,6 @@
         <fqname>@1.0::IGPAppConnector/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>vendor.qti.hardware.wifidisplaysession</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.0::IWifiDisplaySession/wifidisplaysession</fqname>
-        <fqname>@1.0::IWifiDisplaySessionAudioTrack/wifidisplaysessionaudiotrack</fqname>
-        <fqname>@1.0::IWifiDisplaySessionImageTrack/wifidisplaysessionimagetrack</fqname>
-        <fqname>@1.0::IWifiDisplaySessionVideoTrack/wifidisplaysessionvideotrack</fqname>
-    </hal>
-    <hal format="hidl">
         <name>vendor.qti.hardware.wifi.wifilearner</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -430,6 +512,14 @@
             <instance>wifiStats</instance>
         </interface>
         <fqname>@1.0::IWifiStats/wifiStats</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.qti.hardware.wifidisplaysession</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.0::IWifiDisplaySession/wifidisplaysession</fqname>
+        <fqname>@1.0::IWifiDisplaySessionAudioTrack/wifidisplaysessionaudiotrack</fqname>
+        <fqname>@1.0::IWifiDisplaySessionImageTrack/wifidisplaysessionimagetrack</fqname>
+        <fqname>@1.0::IWifiDisplaySessionVideoTrack/wifidisplaysessionvideotrack</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.qti.ims.callinfo</name>
@@ -482,95 +572,5 @@
             <instance>default</instance>
         </interface>
         <fqname>@1.0::IQspmhal/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.semc.hardware.display</name>
-        <transport>hwbinder</transport>
-        <fqname>@2.5::IDisplay/default</fqname>
-        <fqname>@2.5::IFramerateController/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.semc.system.idd</name>
-        <transport>hwbinder</transport>
-        <version>1.1</version>
-        <interface>
-            <name>IIdd</name>
-            <instance>default</instance>
-            <instance>logreader</instance>
-        </interface>
-    </hal>
-    <hal format="aidl">
-        <name>vendor.somc.hardware.aidlmiscta</name>
-        <fqname>IMisctaGlobal/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.somc.hardware.miscta</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IMisctaGlobal</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::IMisctaGlobal/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.egistec.hardware.fingerprint</name>
-        <transport>hwbinder</transport>
-        <version>4.0</version>
-        <interface>
-            <name>IBiometricsFingerprintRbs</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@4.0::IBiometricsFingerprintRbs/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.somc.hardware.security.secd</name>
-        <transport>hwbinder</transport>
-        <version>1.1</version>
-        <interface>
-            <name>IDeviceSecurity</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.1::IDeviceSecurity/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.biometrics.fingerprint</name>
-        <transport>hwbinder</transport>
-        <version>2.1</version>
-        <interface>
-            <name>IBiometricsFingerprint</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@2.1::IBiometricsFingerprint/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.radio</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.2::ISap/slot1</fqname>
-        <fqname>@1.6::IRadio/slot1</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.nxp.hardware.nfc</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>INqNfc</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.somc.hardware.nfc</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISomcNfc</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.0::ISomcNfc/default</fqname>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.security.keymint</name>
-        <version>2</version>
-        <fqname>IRemotelyProvisionedComponent/default</fqname>
     </hal>
 </manifest>
