@@ -41,7 +41,7 @@ SOONG_CONFIG_android_hardware_audio += \
 SOONG_CONFIG_android_hardware_audio_run_64bit := true
 
 PRODUCT_PACKAGES += \
-    android.hardware.audio@7.1-impl \
+    android.hardware.audio@7.0-impl \
     android.hardware.audio.effect@7.0-impl \
     android.hardware.audio.service \
     android.hardware.bluetooth.audio-impl \
@@ -97,9 +97,7 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.1.vendor \
-    android.hardware.bluetooth.audio-V2-ndk.vendor \
-    vendor.qti.hardware.bluetooth.audio-V1-ndk.vendor \
+    android.hardware.bluetooth@1.0.vendor \
     vendor.qti.hardware.bluetooth_audio@2.1.vendor \
     vendor.qti.hardware.btconfigstore@1.0.vendor \
     vendor.qti.hardware.btconfigstore@2.0.vendor
@@ -116,9 +114,10 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    android.hardware.camera.device@3.4.vendor \
-    android.hardware.camera.provider-V1-ndk.vendor \
-    android.hardware.camera.provider@2.4.vendor \
+    android.hardware.camera.device@3.7.vendor \
+    android.hardware.camera.provider-V2-ndk.vendor \
+    android.hardware.camera.provider@2.7.vendor \
+    android.hardware.camera.common@1.0.vendor \
     libcamera_metadata.vendor \
     libexif.vendor \
     libutilscallstack.vendor \
