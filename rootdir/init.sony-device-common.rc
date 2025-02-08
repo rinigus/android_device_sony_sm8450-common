@@ -1,11 +1,13 @@
-# Copyright (c) 2020 Sony Mobile Communications Inc.
+# Copyright 2022 Sony Corporation
 #
 # product common configuration
 #
 
 on early-init
     exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/ \
-    sec_touchscreen
+    sec_touchscreen \
+    bu520x1nvx \
+    et603-int
 
 on boot
     write /sys/devices/virtual/sec/tsp/after_work 1
@@ -15,7 +17,7 @@ on boot
     chown system system /sys/devices/virtual/sec/tsp/cmd
     chmod 0600 /sys/devices/virtual/sec/tsp/cmd
 
-#Touch
+# Touch
 on property:vendor.backlight_on=1
     write /sys/devices/virtual/sec/tsp/cmd "touch_enable_irq,1"
 
