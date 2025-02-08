@@ -34,6 +34,7 @@ ONLY_FIRMWARE=
 ONLY_TARGET=
 KANG=
 SECTION=
+CARRIER_SKIP_FILES=()
 
 while [ "${#}" -gt 0 ]; do
     case "${1}" in
@@ -68,36 +69,51 @@ if [ -z "${SRC}" ]; then
     SRC="adb"
 fi
 
+function blob_patcher() {
+    grep -q "${1}" "${2}" || ${PATCHELF} --add-needed "${1}" "${2}"
+}
+
 function blob_fixup() {
     case "${1}" in
-    system_ext/lib64/libwfdnative.so)
-        [ "$2" = "" ] && return 0
-        grep -q "android.hidl.base@1.0.so" "${2}" && sed -i "s/android.hidl.base@1.0.so/libhidlbase.so\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00/g" "${2}"
-        ;;
-    vendor/lib64/vendor.semc.hardware.extlight-V1-ndk_platform.so)
-        [ "$2" = "" ] && return 0
-        grep -q "android.hardware.light-V1-ndk.so" "${2}" || "${PATCHELF}" --replace-needed "android.hardware.light-V1-ndk_platform.so" "android.hardware.light-V1-ndk.so" "${2}"
-        ;;
-    vendor/lib64/vendor.somc.camera* | vendor/bin/hw/vendor.somc.hardware.camera.*)
-        [ "$2" = "" ] && return 0
-        grep -q "libutils-v32.so" "${2}" || "${PATCHELF}" --replace-needed "libutils.so" "libutils-v32.so" "${2}"
-        grep -q "libhidlbase-v32.so" "${2}" || "${PATCHELF}" --replace-needed "libhidlbase.so" "libhidlbase-v32.so" "${2}"
-        grep -q "libbinder-v32.so" "${2}" && return 0
-        if ! "${PATCHELF}" --print-needed "${2}" | grep "libbinder.so" > /dev/null; then
-            "${PATCHELF}" --add-needed "libbinder-v32.so" "${2}"
-        else
-            "${PATCHELF}" --replace-needed "libbinder.so" "libbinder-v32.so" "${2}"
-        fi
-        ;;
-    vendor/lib/libiVptApi.so | vendor/lib64/libiVptApi.so)
-        [ "$2" = "" ] && return 0
-        grep -q "libiVptLibC.so" "${2}" || "${PATCHELF}" --add-needed "libiVptLibC.so" "${2}"
-        ;;
-    vendor/lib/libiVptLibC.so | vendor/lib64/libiVptLibC.so)
-        [ "$2" = "" ] && return 0
-        grep -q "libcrypto.so" "${2}" || "${PATCHELF}" --add-needed "libcrypto.so" "${2}"
-        grep -q "libiVptHkiDec.so" "${2}" || "${PATCHELF}" --add-needed "libiVptHkiDec.so" "${2}"
-        ;;
+        vendor/bin/hw/vendor.semc.hardware.secd@1.1-service|vendor/bin/keyprovd|vendor/lib64/librkp.so)
+            [ "$2" = "" ] && return 0
+            grep -q "android.hardware.security.rkp-V3-ndk.so" "${2}" || ${PATCHELF} --add-needed "android.hardware.security.rkp-V3-ndk.so" "${2}"
+            ;;
+        vendor/bin/slim_daemon)
+            [ "$2" = "" ] && return 0
+            ${PATCHELF} --add-needed "libc++_shared.so" "${2}"
+            ;;
+        vendor/etc/msm_irqbalance.conf)
+            [ "$2" = "" ] && return 0
+            sed -i "s/IGNORED_IRQ=27,23,38$/&,115,332/" "${2}"
+            ;;
+        vendor/etc/seccomp_policy/qwesd@2.0.policy)
+            [ "$2" = "" ] && return 0
+            echo "pipe2: 1" >> "${2}"
+            ;;
+        system_ext/lib64/libwfdservice.so)
+            [ "$2" = "" ] && return 0
+            sed -i "s/android.media.audio.common.types-V2-cpp.so/android.media.audio.common.types-V3-cpp.so/" "${2}"
+            ;;
+        vendor/lib/libiVptApi.so | vendor/lib64/libiVptApi.so)
+            [ "$2" = "" ] && return 0
+            grep -q "libiVptLibC.so" "${2}" || "${PATCHELF}" --add-needed "libiVptLibC.so" "${2}"
+            ;;
+        vendor/lib/libiVptLibC.so | vendor/lib64/libiVptLibC.so)
+            [ "$2" = "" ] && return 0
+            grep -q "libcrypto.so" "${2}" || "${PATCHELF}" --add-needed "libcrypto.so" "${2}"
+            grep -q "libiVptHkiDec.so" "${2}" || "${PATCHELF}" --add-needed "libiVptHkiDec.so" "${2}"
+            ;;
+        vendor/bin/hw/android.hardware.security.keymint-service-qti|vendor/lib64/libqtikeymint.so)
+            [ "$2" = "" ] && return 0
+            blob_patcher "android.hardware.security.rkp-V3-ndk.so" "${2}"
+            blob_patcher "android.hardware.security.secureclock-V1-ndk.so" "${2}"
+            blob_patcher "android.hardware.security.sharedsecret-V1-ndk.so" "${2}"
+            blob_patcher "android.hardware.security.keymint-V1-ndk.so" "${2}"
+            ;;
+        *)
+            return 1
+            ;;
     esac
 
     return 0
@@ -109,18 +125,25 @@ function blob_fixup_dry() {
 
 if [ -z "${ONLY_FIRMWARE}" ] && [ -z "${ONLY_TARGET}" ]; then
     # Initialize the helper for common device
-    setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${ANDROID_ROOT}" true "${CLEAN_VENDOR}"
+    setup_vendor "${DEVICE_COMMON}" "${VENDOR_COMMON:-$VENDOR}" "${ANDROID_ROOT}" true "${CLEAN_VENDOR}"
 
     extract "${MY_DIR}/proprietary-files.txt" "${SRC}" "${KANG}" --section "${SECTION}"
 fi
 
-if [ -z "${ONLY_COMMON}" ] && [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
+if [ -z "${ONLY_COMMON}" ] && [ -s "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-files.txt" ]; then
     # Reinitialize the helper for device
-    source "${MY_DIR}/../${DEVICE}/extract-files.sh"
+    source "${MY_DIR}/../../${VENDOR}/${DEVICE}/extract-files.sh"
     setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false "${CLEAN_VENDOR}"
 
     if [ -z "${ONLY_FIRMWARE}" ]; then
         extract "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-files.txt" "${SRC}" "${KANG}" --section "${SECTION}"
+
+        if [ -f "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-files-carriersettings.txt" ]; then
+            generate_prop_list_from_image "product.img" "${MY_DIR}/../../proprietary-files-carriersettings.txt" CARRIER_SKIP_FILES carriersettings
+            extract "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-files-carriersettings.txt" "${SRC}" "${KANG}" --section "${SECTION}"
+
+            extract_carriersettings
+        fi
     fi
 
     if [ -z "${SECTION}" ] && [ -f "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-firmware.txt" ]; then

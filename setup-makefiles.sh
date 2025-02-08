@@ -24,13 +24,15 @@ source "${HELPER}"
 
 function vendor_imports() {
     cat <<EOF >>"$1"
-                "hardware/qcom-caf/sm8350",
-                "hardware/qcom-caf/wlan",
-                "hardware/sony",
-                "vendor/qcom/opensource/commonsys/display",
-                "vendor/qcom/opensource/commonsys-intf/display",
-                "vendor/qcom/opensource/dataservices",
-                "vendor/qcom/opensource/display",
+        "hardware/qcom-caf/sm8450",
+        "hardware/qcom-caf/wlan",
+        "hardware/sony",
+        "vendor/qcom/opensource/commonsys/display",
+        "vendor/qcom/opensource/commonsys-intf/display",
+        "vendor/qcom/opensource/dataservices",
+        "vendor/qcom/opensource/display",
+        "vendor/sony/pdx223",
+        "vendor/sony/sm8450-common",
 EOF
 }
 
@@ -40,15 +42,7 @@ function lib_to_package_fixup_vendor_variants() {
     fi
 
     case "$1" in
-        com.qualcomm.qti.dpm.api@1.0 | \
-            com.qualcomm.qti.imscmservice@1.0 | \
-            com.qualcomm.qti.imscmservice@2.0 | \
-            com.qualcomm.qti.imscmservice@2.1 | \
-            com.qualcomm.qti.imscmservice@2.2 | \
-            com.qualcomm.qti.uceservice@2.0 | \
-            com.qualcomm.qti.uceservice@2.1 | \
-            libmmosal | \
-            vendor.qti.diaghal@1.0 | \
+        vendor.qti.hardware.fm@1.0 | \
             vendor.qti.hardware.data.cne.internal.api@1.0 | \
             vendor.qti.hardware.data.cne.internal.constants@1.0 | \
             vendor.qti.hardware.data.cne.internal.server@1.0 | \
@@ -57,31 +51,23 @@ function lib_to_package_fixup_vendor_variants() {
             vendor.qti.hardware.data.dynamicdds@1.0 | \
             vendor.qti.hardware.data.iwlan@1.0 | \
             vendor.qti.hardware.data.qmi@1.0 | \
-            vendor.qti.hardware.fm@1.0 | \
-            vendor.qti.hardware.qseecom@1.0 | \
-            vendor.qti.hardware.tui_comm@1.0 | \
-            vendor.qti.hardware.wifidisplaysession@1.0 | \
-            vendor.qti.ims.callinfo@1.0 | \
-            vendor.qti.ims.rcsconfig@1.0 | \
-            vendor.qti.ims.rcsconfig@1.1 | \
-            vendor.qti.imsrtpservice@3.0)
+            com.qualcomm.qti.dpm.api@1.0 | \
+            libvibrator | \
+            vendor.qti.hardware.dpmservice@1.0 | \
+            vendor.qti.diaghal@1.0 | \
+            vendor.qti.imsrtpservice@3.0 | \
+            vendor.qti.imsrtpservice@3.1 | \
+            vendor.qti.hardware.qccsyshal@1.0 | \
+            vendor.qti.hardware.qccsyshal@1.1 | \
+            vendor.qti.hardware.qccsyshal@1.2 | \
+            vendor.qti.hardware.qccvndhal@1.0 | \
+            vendor.qti.hardware.wifidisplaysession@1.0)
             echo "$1_vendor"
             ;;
-        libhidlbase-v32)
-            echo "libhidlbase"
-            ;;
-        libbinder-v32)
-            echo "libbinder"
-            ;;
-        libutils-v32)
-            echo "libutils"
-            ;;
-        libOmxCore | \
-            libplatformconfig | \
-            libwpa_client | \
+        libwpa_client | \
             libwfdaac_vendor | \
-            libc2dcolorconvert | \
-            libril)
+            libagmclient | \
+            libpalclient)
             # Android.mk only packages
             ;;
         *)
@@ -97,18 +83,18 @@ function lib_to_package_fixup() {
 }
 
 # Initialize the helper for common
-setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${ANDROID_ROOT}" true
+setup_vendor "${DEVICE_COMMON}" "${VENDOR_COMMON:-$VENDOR}" "${ANDROID_ROOT}" true
 
 # Warning headers and guards
-write_headers "pdx214 pdx215"
+write_headers "pdx223"
 
 # The standard common blobs
-write_makefiles "${MY_DIR}/proprietary-files.txt" true
+write_makefiles "${MY_DIR}/proprietary-files.txt"
 
 # Finish
 write_footers
 
-if [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
+if [ -s "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-files.txt" ]; then
     # Reinitialize the helper for device
     source "${MY_DIR}/../../${VENDOR}/${DEVICE}/setup-makefiles.sh"
     setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false
@@ -117,7 +103,14 @@ if [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
     write_headers
 
     # The standard device blobs
-    write_makefiles "${MY_DIR}/../${DEVICE}/proprietary-files.txt" true
+    write_makefiles "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-files.txt"
+
+    if [ -f "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-files-carriersettings.txt" ]; then
+        write_makefiles "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-files-carriersettings.txt"
+
+        write_rro_package "CarrierConfigOverlay" "com.android.carrierconfig" product
+        write_single_product_packages "CarrierConfigOverlay"
+    fi
 
     if [ -f "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-firmware.txt" ]; then
         append_firmware_calls_to_makefiles "${MY_DIR}/../../${VENDOR}/${DEVICE}/proprietary-firmware.txt"
