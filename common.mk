@@ -177,7 +177,6 @@ PRODUCT_PACKAGES += \
     libqdMetaData.system \
     libsdmcore \
     libsdmutils \
-    memtrack.default \
     libmemutils \
     vendor.display.config@1.5 \
     vendor.display.config@1.15.vendor \
