@@ -165,7 +165,6 @@ PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
 
 # Display
 PRODUCT_PACKAGES += \
-    libdisplayconfig.qti \
     libqdMetaData \
     libtinyxml \
     android.hardware.graphics.mapper@3.0-impl-qti-display \
@@ -249,7 +248,8 @@ PRODUCT_COPY_FILES += \
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1.vendor \
-    android.hardware.health-service.qti
+    android.hardware.health-service.qti \
+    android.hardware.health-service.qti_recovery
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -334,7 +334,8 @@ PRODUCT_PACKAGES += \
     libavservices_minijail \
     libavservices_minijail.vendor \
     libavservices_minijail_vendor \
-    libcodec2_hidl@1.2.vendor
+    libcodec2_hidl@1.2.vendor \
+    libpalclient
 
 # Media (Device)
 PRODUCT_COPY_FILES += \
