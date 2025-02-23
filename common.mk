@@ -57,16 +57,17 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     audioadsprpcd \
+    agmcap \
+    agmcompressplay \
+    agmplay \
     libaudiopreprocessing \
     libagm_compress_plugin \
     libagm_mixer_plugin \
     libagm_pcm_plugin \
-    libagmclient \
-    libbatterylistener \
     libbundlewrapper \
-    libdownmix \
     libdynproc \
     libeffectproxy \
+    libhapticgenerator \
     libldnhncr \
     libqcompostprocbundle \
     libqcomvisualizer \
@@ -74,8 +75,7 @@ PRODUCT_PACKAGES += \
     libreverbwrapper \
     libsndcardparser \
     libtinycompress \
-    libvisualizer \
-    libvolumelistener
+    libvisualizer
 
 AUDIO_HAL_DIR := hardware/qcom-caf/sm8450/audio/primary-hal
 
