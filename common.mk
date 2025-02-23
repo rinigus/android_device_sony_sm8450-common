@@ -48,14 +48,13 @@ PRODUCT_PACKAGES += \
     android.hardware.audio@7.0-impl \
     android.hardware.audio.effect@7.0-impl \
     android.hardware.audio.service \
-    android.hardware.bluetooth.audio@2.1-impl \
+    android.hardware.bluetooth.audio-impl \
     android.hardware.soundtrigger@2.3-impl \
-    tinyplay \
-    tinymix
+    vendor.qti.hardware.AGMIPC@1.0-service \
+    vendor.qti.hardware.pal@1.0-impl
 
 PRODUCT_PACKAGES += \
     audio.bluetooth.default \
-    audio.primary.taro \
     audio.r_submix.default \
     audio.usb.default \
     sound_trigger.primary.taro
@@ -66,6 +65,7 @@ PRODUCT_PACKAGES += \
     libagm_compress_plugin \
     libagm_mixer_plugin \
     libagm_pcm_plugin \
+    libagmclient \
     libbatterylistener \
     libbundlewrapper \
     libdownmix \
@@ -168,8 +168,6 @@ PRODUCT_PACKAGES += \
     libqdMetaData \
     libtinyxml \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
-    android.hardware.memtrack@1.0-impl \
-    android.hardware.memtrack@1.0-service \
     init.qti.display_boot.rc \
     init.qti.display_boot.sh \
     libdisplayconfig.qti \

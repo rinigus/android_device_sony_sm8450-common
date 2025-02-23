@@ -67,7 +67,8 @@ function lib_to_package_fixup_vendor_variants() {
         libwpa_client | \
             libwfdaac_vendor | \
             libagmclient | \
-            libpalclient)
+            libpalclient | \
+            vendor.qti.hardware.pal@1.0-impl)
             # Android.mk only packages
             ;;
         *)

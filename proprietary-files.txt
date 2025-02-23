@@ -104,6 +104,7 @@ system_ext/lib64/com.qualcomm.qti.ant@1.0.so
 vendor/etc/models/acd/event.eai
 vendor/etc/models/acd/music.eai
 vendor/etc/models/acd/speech.eai
+vendor/lib64/hw/audio.primary.taro.so;DISABLE_CHECKELF
 vendor/lib64/lib360raspeakervirtualizer.so
 vendor/lib64/lib360raupmix.so
 vendor/lib64/lib360ravirtualizer.so
@@ -137,6 +138,7 @@ vendor/lib64/vendor.dolby.hardware.dms@2.0.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModel@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModel@1.0.so
 
+
 # Audio AGM
 -vendor/lib64/libagm.so
 -vendor/lib64/vendor.qti.hardware.AGMIPC@1.0-impl.so
@@ -148,9 +150,9 @@ vendor/lib64/libc++_shared.so
 vendor/lib64/libdapparamstorage.so
 vendor/lib64/libdlbdsservice.so
 vendor/lib64/libdlbpreg.so
-vendor/lib64/libiVptApi.so
-vendor/lib64/libiVptHkiDec.so
-vendor/lib64/libiVptLibC.so
+vendor/lib64/libiVptApi.so;DISABLE_CHECKELF
+vendor/lib64/libiVptHkiDec.so;DISABLE_CHECKELF
+vendor/lib64/libiVptLibC.so;DISABLE_CHECKELF
 vendor/lib64/liboem_specific.so
 vendor/lib64/librebuffering.so
 vendor/lib64/libvibrator.so;MODULE_SUFFIX=_vendor
