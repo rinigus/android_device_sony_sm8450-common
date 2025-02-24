@@ -133,8 +133,6 @@ vendor/lib64/libmcs.so
 vendor/lib64/libqtigefar.so
 vendor/lib64/libsonydseehxwrapper.so
 vendor/lib64/libupmix-lib.so
-vendor/lib64/vendor.dolby.hardware.dms@2.0-impl.so
-vendor/lib64/vendor.dolby.hardware.dms@2.0.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModel@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModel@1.0.so
 
@@ -404,6 +402,18 @@ vendor/lib64/libqdp.so
 vendor/lib64/vendor.qti.hardware.embmssl@1.0.so
 vendor/lib64/vendor.qti.hardware.embmssl@1.1.so
 vendor/lib64/vendor.qti.hardware.radio.atcmdfwd@1.0.so
+
+# Dolby
+vendor/bin/hw/vendor.dolby.hardware.dms@2.0-service
+vendor/etc/dolby/dax-default.xml
+vendor/etc/init/vendor.dolby.hardware.dms@2.0-service.rc
+vendor/etc/vintf/manifest/vendor.dolby.hardware.dms.xml
+vendor/lib/libdlbpreg.so
+vendor/lib/vendor.dolby.hardware.dms@2.0.so
+vendor/lib64/libdlbpreg.so
+vendor/lib64/libdlbdsservice.so
+vendor/lib64/vendor.dolby.hardware.dms@2.0-impl.so
+vendor/lib64/vendor.dolby.hardware.dms@2.0.so
 
 # DPM
 system/framework/tcmclient.jar
