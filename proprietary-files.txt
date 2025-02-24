@@ -1670,6 +1670,7 @@ vendor/lib64/libvideoutils.so
 # VPP
 vendor/bin/vppservice
 vendor/etc/configstore/vpp.configstore.xml
+vendor/etc/be_movie_spc
 vendor/etc/init/qconfig.rc
 vendor/etc/init/vppservice.rc
 vendor/etc/qconfigpresets.json
