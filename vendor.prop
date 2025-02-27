@@ -237,12 +237,6 @@ ro.opengles.version=196610
 # Keystore
 ro.hardware.keystore_desede=true
 
-# Media
-debug.stagefright.omx_default_rank=0
-debug.stagefright.ccodec=4
-debug.stagefright.c2inputsurface=-1
-debug.c2.use_dmabufheaps=1
-
 # Netmgr
 persist.vendor.data.iwlan.enable=true
 
