@@ -68,9 +68,6 @@ function lib_to_package_fixup_vendor_variants() {
             libwfdaac_vendor | \
             libagmclient | \
             libpalclient | \
-            lib360raspeakervirtualizer | \
-            lib360raupmix | \
-            lib360ravirtualizer | \
             vendor.qti.hardware.pal@1.0-impl)
             # Android.mk only packages
             ;;

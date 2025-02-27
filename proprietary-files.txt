@@ -105,6 +105,9 @@ vendor/etc/models/acd/event.eai
 vendor/etc/models/acd/music.eai
 vendor/etc/models/acd/speech.eai
 vendor/lib64/hw/audio.primary.taro.so;DISABLE_CHECKELF
+vendor/lib64/lib360raspeakervirtualizer.so
+vendor/lib64/lib360raupmix.so
+vendor/lib64/lib360ravirtualizer.so
 vendor/lib64/libAlacSwDec.so
 vendor/lib64/libApeSwDec.so
 vendor/lib64/libEvrcSwCodec.so
@@ -123,6 +126,9 @@ vendor/lib64/libcapiv2uvvendor.so
 vendor/lib64/libdsd2pcm.so
 vendor/lib64/libeai_fixed.so
 vendor/lib64/libeai_float.so
+vendor/lib64/libiVptApi.so;DISABLE_CHECKELF
+vendor/lib64/libiVptHkiDec.so;DISABLE_CHECKELF
+vendor/lib64/libiVptLibC.so;DISABLE_CHECKELF
 vendor/lib64/liblistensoundmodel2vendor.so
 vendor/lib64/liblx-ar_util.so
 vendor/lib64/liblx-osal.so
@@ -130,6 +136,8 @@ vendor/lib64/libmcs.so
 vendor/lib64/libqtigefar.so
 vendor/lib64/libsonydseehxwrapper.so
 vendor/lib64/libupmix-lib.so
+vendor/lib64/vendor.qti.hardware.ListenSoundModel@1.0-impl.so
+vendor/lib64/vendor.qti.hardware.ListenSoundModel@1.0.so
 
 # Audio AGM
 vendor/lib64/libagm.so
@@ -947,6 +955,7 @@ vendor/lib64/libsn100u_fw.so
 vendor/lib64/vendor.somc.hardware.nfc@1.0.so
 
 # NFC configs
+vendor/etc/libese-nxp.conf
 vendor/etc/libnfc-nci.conf
 vendor/etc/libnfc-nxp.conf
 vendor/etc/libnfc-nxp_RF.conf
@@ -1404,7 +1413,20 @@ vendor/lib64/vendor.somc.hardware.miscta@1.0.so
 vendor/lib64/vendor.somc.hardware.security.secd@1.1.so
 
 # Secure element
-vendor/lib64/libesesbprovision.so
+vendor/bin/hw/android.hardware.secure_element_snxxx@1.2-service
+vendor/etc/init/android.hardware.secure_element_snxxx@1.2-service.rc
+vendor/lib64/ese_spi_nxp_snxxx.so
+vendor/lib64/jcos_client.so
+vendor/lib64/ls_client.so
+vendor/lib64/se_extn_client.so
+
+# Secure processor
+vendor/bin/hw/vendor.qti.hardware.secureprocessor@1.0
+vendor/etc/init/vendor.qti.hardware.secureprocessor@1.0.rc
+vendor/lib64/vendor.qti.hardware.secureprocessor.common@1.0-helper.so
+vendor/lib64/vendor.qti.hardware.secureprocessor.common@1.0.so
+vendor/lib64/vendor.qti.hardware.secureprocessor.config@1.0.so
+vendor/lib64/vendor.qti.hardware.secureprocessor.device@1.0.so
 
 # Sensors
 vendor/bin/hw/vendor.qti.hardware.sensorscalibrate@1.0-service
