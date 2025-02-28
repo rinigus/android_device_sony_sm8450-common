@@ -25,18 +25,6 @@ value:2908
 [AID_VENDOR_QTR]
 value:2909
 
-[AID_VENDOR_NXP_STRONGBOX]
-value:2910
-
-[AID_VENDOR_NXP_WEAVER]
-value:2911
-
-[AID_VENDOR_SSGTZD]
-value:2912
-
-[AID_VENDOR_THALES_STRONGBOX]
-value:2913
-
 [AID_VENDOR_IDD]
 value:2987
 
@@ -78,6 +66,12 @@ caps: 0
 
 [firmware/image/*]
 mode: 0771
+user: AID_SYSTEM
+group: AID_SYSTEM
+caps: 0
+
+[oem/app/rspermntt_somc/rspermntt_somc.apk]
+mode: 0644
 user: AID_SYSTEM
 group: AID_SYSTEM
 caps: 0
@@ -184,6 +178,18 @@ user: AID_BLUETOOTH
 group: AID_BLUETOOTH
 caps: BLOCK_SUSPEND
 
+[system_ext/app/DcmAccountWipeService_somc/DcmAccountWipeService_somc.apk]
+mode: 0644
+user: AID_SYSTEM
+group: AID_SYSTEM
+caps: 0
+
+[system_ext/app/DcmAccountWipeService_test_somc/DcmAccountWipeService_test_somc.apk]
+mode: 0644
+user: AID_SYSTEM
+group: AID_SYSTEM
+caps: 0
+
 [vendor/bin/cnd]
 mode: 0755
 user: AID_SYSTEM
@@ -201,24 +207,6 @@ mode: 0755
 user: AID_BLUETOOTH
 group: AID_BLUETOOTH
 caps: NET_ADMIN BLOCK_SUSPEND
-
-[vendor/bin/hw/android.hardware.security.keymint-service.strongbox]
-mode: 0755
-user: AID_VENDOR_NXP_STRONGBOX
-group: AID_SYSTEM
-caps: SYS_ADMIN SYS_NICE
-
-[vendor/bin/hw/android.hardware.security.keymint-service.strongbox-thales]
-mode: 0755
-user: AID_VENDOR_THALES_STRONGBOX
-group: AID_SYSTEM
-caps: SYS_ADMIN SYS_NICE
-
-[vendor/bin/hw/android.hardware.weaver@1.0-service]
-mode: 0755
-user: AID_VENDOR_NXP_WEAVER
-group: AID_SYSTEM
-caps: SYS_ADMIN SYS_NICE
 
 [vendor/bin/ims_rtp_daemon]
 mode: 0755
