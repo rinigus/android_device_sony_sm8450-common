@@ -951,8 +951,10 @@ vendor/etc/public.libraries.txt
 vendor/lib64/QNN/libQnnHtpAltPrepV69Stub.so
 
 # NFC
-vendor/lib64/libsn100u_fw.so
+vendor/bin/hw/android.hardware.nfc_snxxx@1.2-service
+vendor/etc/init/android.hardware.nfc_snxxx@1.2-service.rc
 vendor/lib64/vendor.somc.hardware.nfc@1.0.so
+vendor/lib64/nfc_nci_nxp_snxxx.so
 
 # NFC configs
 vendor/etc/libese-nxp.conf
