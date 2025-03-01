@@ -52,8 +52,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     audio.bluetooth.default \
     audio.r_submix.default \
-    audio.usb.default \
-    sound_trigger.primary.taro
+    audio.usb.default
 
 PRODUCT_PACKAGES += \
     audioadsprpcd \

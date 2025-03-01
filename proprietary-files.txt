@@ -138,6 +138,7 @@ vendor/lib64/libsonydseehxwrapper.so
 vendor/lib64/libupmix-lib.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModel@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.ListenSoundModel@1.0.so
+vendor/lib64/hw/sound_trigger.primary.taro.so
 
 # Audio AGM
 vendor/lib64/libagm.so
