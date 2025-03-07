@@ -46,8 +46,7 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.service \
     android.hardware.bluetooth.audio-impl \
     android.hardware.soundtrigger@2.3-impl \
-    vendor.qti.hardware.AGMIPC@1.0-service \
-    vendor.qti.hardware.pal@1.0-impl
+    vendor.qti.hardware.pal@1.0
 
 PRODUCT_PACKAGES += \
     audio.bluetooth.default \
@@ -56,13 +55,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     audioadsprpcd \
-    agmcap \
-    agmcompressplay \
-    agmplay \
     libaudiopreprocessing \
-    libagm_compress_plugin \
-    libagm_mixer_plugin \
-    libagm_pcm_plugin \
     libbundlewrapper \
     libdynproc \
     libeffectproxy \
@@ -72,7 +65,6 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     libreverbwrapper \
-    libsndcardparser \
     libtinycompress \
     libvisualizer
 

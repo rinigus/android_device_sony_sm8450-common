@@ -68,6 +68,7 @@ function lib_to_package_fixup_vendor_variants() {
             libwfdaac_vendor | \
             libagmclient | \
             libpalclient | \
+            libsndcardparser | \
             vendor.qti.hardware.pal@1.0-impl)
             # Android.mk only packages
             ;;
