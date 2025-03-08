@@ -95,6 +95,17 @@ function blob_fixup() {
             [ "$2" = "" ] && return 0
             sed -i "s/android.media.audio.common.types-V2-cpp.so/android.media.audio.common.types-V3-cpp.so/" "${2}"
             ;;
+        vendor/lib64/vendor.somc.camera* | vendor/bin/hw/vendor.somc.hardware.camera.*)
+            [ "$2" = "" ] && return 0
+            grep -q "libutils-v32.so" "${2}" || "${PATCHELF}" --replace-needed "libutils.so" "libutils-v32.so" "${2}"
+            grep -q "libhidlbase-v32.so" "${2}" || "${PATCHELF}" --replace-needed "libhidlbase.so" "libhidlbase-v32.so" "${2}"
+            grep -q "libbinder-v32.so" "${2}" && return 0
+            if ! "${PATCHELF}" --print-needed "${2}" | grep "libbinder.so" > /dev/null; then
+                "${PATCHELF}" --add-needed "libbinder-v32.so" "${2}"
+            else
+                "${PATCHELF}" --replace-needed "libbinder.so" "libbinder-v32.so" "${2}"
+            fi
+            ;;
         # vendor/lib/libiVptApi.so | vendor/lib64/libiVptApi.so)
         #     [ "$2" = "" ] && return 0
         #     grep -q "libiVptLibC.so" "${2}" || "${PATCHELF}" --add-needed "libiVptLibC.so" "${2}"

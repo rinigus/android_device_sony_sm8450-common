@@ -72,6 +72,15 @@ function lib_to_package_fixup_vendor_variants() {
             vendor.qti.hardware.pal@1.0-impl)
             # Android.mk only packages
             ;;
+        libhidlbase-v32)
+            echo "libhidlbase"
+            ;;
+        libbinder-v32)
+            echo "libbinder"
+            ;;
+        libutils-v32)
+            echo "libutils"
+            ;;
         *)
             return 1
             ;;
