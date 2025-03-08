@@ -39,7 +39,6 @@ vendor.mm.enable.qcom_parser=16777215
 persist.mm.enable.prefetch=true
 ro.mediacodec.min_sample_rate=7350
 ro.mediacodec.max_sample_rate=2822400
-media.settings.xml=/vendor/etc/media_profiles_vendor.xml
 
 # Netmgr
 ro.vendor.use_data_netmgrd=true
