@@ -309,6 +309,8 @@ PRODUCT_PACKAGES += \
     libavservices_minijail.vendor \
     libavservices_minijail_vendor \
     libcodec2_hidl@1.2.vendor \
+    libfmpal \
+    libhfp_pal \
     libpalclient
 
 # Media (Device)
