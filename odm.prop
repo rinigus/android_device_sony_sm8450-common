@@ -1,5 +1,9 @@
 # Audio
 ro.vendor.qti.va_odm.support=1
+ro.vendor.audio.audio_jack_status=/sys/bus/platform/devices/wcd938x-codec/extcon/extcon4/state
+ro.vendor.sony.effect.dolby_atmos=true
+
+persist.vendor.qcom.bluetooth.aac_abr_support=true
 
 persist.vendor.display.pcc_matrix=0.000000,0.000000,0.000000,0.000000,0.117647,0.235294
 

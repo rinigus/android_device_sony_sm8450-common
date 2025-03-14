@@ -10,6 +10,13 @@ persist.backup.ntpServer=0.pool.ntp.org
 # RIL
 ril.subscription.types=NV,RUIM
 
+# Thermal
+ro.sys.thermal.incoming_call=ON
+ro.sys.thermal.notify_5g_notification=ON
+ro.sys.thermal.notify_chargeoff=ON
+ro.sys.thermal.notify_iec_notification=ON
+ro.sys.thermal.notify_not_auto_dismiss=ON
+
 # ZRAM
 ro.zram.mark_idle_delay_mins=60
 ro.zram.first_wb_delay_mins=1440
