@@ -2,13 +2,17 @@
 ro.vendor.qti.va_odm.support=1
 ro.vendor.audio.audio_jack_status=/sys/bus/platform/devices/wcd938x-codec/extcon/extcon4/state
 ro.vendor.sony.effect.dolby_atmos=true
+vendor.somc.qti_lea.support=true
 
+# Bluetooth
 persist.vendor.qcom.bluetooth.aac_abr_support=true
 
-persist.vendor.display.pcc_matrix=0.000000,0.000000,0.000000,0.000000,0.117647,0.235294
-
+# Display
 persist.vendor.colorgamut.mode=1
+persist.vendor.display.pcc_matrix=0.000000,0.000000,0.000000,0.000000,0.117647,0.235294
 persist.vendor.display.colorgamut.mode=1
-persist.vendor.display.sspp_color_mode=1
+persist.vendor.display.libhdr.enable_dyn_tm=0
 persist.vendor.display.opec_mode=0
+persist.vendor.display.sspp_color_mode=1
+vendor.display.force_tonemapping=1
 vendor.display.hmd_mode=0
