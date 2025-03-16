@@ -155,8 +155,8 @@ vendor/lib64/libagm_pcm_plugin.so;DISABLE_CHECKELF
 vendor/lib64/libagmclient.so
 vendor/lib64/libagmmixer.so
 vendor/lib64/libsndcardparser.so
-vendor/lib64/vendor.qti.hardware.AGMIPC@1.0.so
-vendor/lib64/vendor.qti.hardware.AGMIPC@1.0-impl.so
+vendor/lib64/vendor.qti.hardware.AGMIPC@1.0.so;MODULE_SUFFIX=_vendor
+vendor/lib64/vendor.qti.hardware.AGMIPC@1.0-impl.so;MODULE_SUFFIX=_vendor
 
 # Audio FX modules
 vendor/lib64/soundfx/libasphere.so
