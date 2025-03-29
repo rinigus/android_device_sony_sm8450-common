@@ -1658,6 +1658,8 @@ vendor/lib/libta.so
 vendor/lib64/libta.so
 
 # TA daemon
+odm/bin/taimport_vendor
+odm/etc/init/taimport_vendor.rc
 vendor/bin/tad
 
 # TFTP

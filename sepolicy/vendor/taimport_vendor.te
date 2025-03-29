@@ -1,0 +1,7 @@
+type taimport_vendor, domain;
+type taimport_vendor_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(taimport_vendor)
+
+allow taimport_vendor taimport_vendor_exec:file { read getattr map execute open };
+domain_trans(taimport_vendor, taimport_vendor_exec, taimport_vendor);

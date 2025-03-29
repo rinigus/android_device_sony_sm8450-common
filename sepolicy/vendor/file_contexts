@@ -1,0 +1,2 @@
+# Executable
+/odm/bin/taimport_vendor  u:object_r:taimport_vendor_exec:s0
