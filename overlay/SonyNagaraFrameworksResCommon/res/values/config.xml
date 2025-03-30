@@ -513,13 +513,12 @@
              eutran5gc : eutran5gcSupportedRelease
     -->
     <string-array name="config_telephonyEuiccDeviceCapabilities">
-        <item>gsm,11</item>
-        <item>utran,11</item>
-        <item>cdma1x,1</item>
-        <item>hrpd,3</item>
-        <item>ehrpd,12</item>
-        <item>eutran,11</item>
-        <item>nfc,1</item>
+        <item>gsm,9</item>
+        <item>utran,9</item>
+        <item>eutran,15</item>
+        <item>nrepc,15</item>
+        <item>nr5gc,15</item>
+        <item>eutran5gc,15</item>
     </string-array>
 
     <!-- Enable Zram writeback feature to allow unused pages in zram be written to flash. -->
