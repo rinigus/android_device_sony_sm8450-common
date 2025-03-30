@@ -1020,6 +1020,7 @@ vendor/etc/libnfc-nxp.conf
 vendor/etc/libnfc-nxp_RF.conf
 
 # NFC Firmware
+vendor/lib64/libsn100u_fw.so
 
 # NV Updater
 vendor/bin/nv_updater
