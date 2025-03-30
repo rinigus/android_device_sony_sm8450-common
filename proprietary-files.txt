@@ -1007,12 +1007,6 @@ vendor/etc/public.libraries.txt
 # Neural networks
 vendor/lib64/QNN/libQnnHtpAltPrepV69Stub.so
 
-# NFC
-vendor/bin/hw/android.hardware.nfc_snxxx@1.2-service
-vendor/etc/init/android.hardware.nfc_snxxx@1.2-service.rc
-vendor/lib64/vendor.somc.hardware.nfc@1.0.so
-vendor/lib64/nfc_nci_nxp_snxxx.so
-
 # NFC configs
 vendor/etc/libese-nxp.conf
 vendor/etc/libnfc-nci.conf
@@ -1479,14 +1473,6 @@ vendor/lib64/libmiscta.so
 vendor/lib64/libsuntory.so
 vendor/lib64/vendor.somc.hardware.miscta@1.0.so
 vendor/lib64/vendor.somc.hardware.security.secd@1.1.so
-
-# Secure element
-vendor/bin/hw/android.hardware.secure_element_snxxx@1.2-service
-vendor/etc/init/android.hardware.secure_element_snxxx@1.2-service.rc
-vendor/lib64/ese_spi_nxp_snxxx.so
-vendor/lib64/jcos_client.so
-vendor/lib64/ls_client.so
-vendor/lib64/se_extn_client.so
 
 # Secure processor
 vendor/bin/hw/vendor.qti.hardware.secureprocessor@1.0
