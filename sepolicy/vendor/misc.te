@@ -1,0 +1,50 @@
+allow bootanim vendor_hal_qspmhal_default:binder call;
+
+allow devicesetting_app legacy_permission_service:service_manager find;
+
+allow hal_audio_default vendor_360ra_prop:file { getattr map open read };
+
+allow hal_bluetooth_default vendor_data_file:file { open read };
+
+allow hal_fingerprint_default vendor_dmabuf_qseecom_ta_heap_device:chr_file { ioctl open read };
+
+allow hal_light_default sysfs_dp:dir { search };
+allow hal_light_default sysfs_dp:file { open read };
+
+allow hal_vibrator_default sysfs:file { getattr open read write };
+
+allow idd vendor_idd_vendor_product_name_prop:file { getattr map open read };
+allow idd vendor_idd_startupprober_start_prop:file { getattr map open read };
+allow idd vendor_somc_cust_prop:file { getattr map open read };
+
+allow keyprovd vendor_dmabuf_qseecom_heap_device:chr_file { ioctl open read };
+allow keyprovd vendor_suntory_prop:file { getattr map open read };
+
+allow rild vendor_radio_somc_prop:property_service { set };
+
+allow surfaceflinger vendor_hal_qspmhal_default:binder call;
+
+allow tee rootfs:dir open;
+
+allow vendor_agmservice_qti debugfs:dir { open read };
+
+allow vendor_init audio_prop:property_service { set };
+#allow vendor_init bluetooth_prop:property_service { set };
+#allow vendor_init default_prop:property_service { set };
+allow vendor_init powerctl_prop:file { read };
+#allow vendor_init radio_prop:property_service { set };
+#allow vendor_init vendor_display_notch_prop:property_service { set };
+
+allow vendor_location fwk_sensor_service:service_manager find;
+allow vendor_location vendor_sysfs_soc_sensitive:file { open read };
+# getaddr not defined
+# allow vendor_location vendor_sysfs_soc_sensitive:file { getattr };
+
+allow vendor_thermal-engine vendor_hal_qspmhal_default:binder call;
+allow vendor_thermal-engine vendor_hal_perf_hwservice:hwservice_manager find;
+allow vendor_thermal-engine vendor_hal_perf_default:binder call;
+
+allow vendor_qti_init_shell vendor_sysfs_msm_perf:file { write };
+
+allow vendor_vppservice vendor_hal_secd_default:binder { call };
+allow vendor_vppservice vendor_tee_listener_prop:file { getattr map open read };

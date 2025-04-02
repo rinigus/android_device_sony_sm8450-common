@@ -2,6 +2,17 @@ type taimport_vendor, domain;
 type taimport_vendor_exec, exec_type, file_type, vendor_file_type;
 
 init_daemon_domain(taimport_vendor)
+domain_trans(taimport_vendor, taimport_vendor_exec, taimport_vendor);
 
 allow taimport_vendor taimport_vendor_exec:file { read getattr map execute open };
-domain_trans(taimport_vendor, taimport_vendor_exec, taimport_vendor);
+allow taimport_vendor mnt_vendor_file:dir { add_name remove_name search write };
+allow taimport_vendor mnt_vendor_file:file { create getattr open unlink write };
+allow taimport_vendor property_socket:sock_file { write };
+allow taimport_vendor tad_socket:sock_file { write };
+allow taimport_vendor init:unix_stream_socket { connectto };
+allow taimport_vendor tad:unix_stream_socket { connectto };
+allow taimport_vendor taimport_vendor:capability { setgid };
+allow taimport_vendor vendor_data_file:dir { add_name remove_name write };
+allow taimport_vendor vendor_data_file:file { create getattr open write unlink };
+
+allow taimport_vendor vendor_somc_cust_prop:property_service { set };

@@ -1,0 +1,5 @@
+allow misctrl sysfs_dt_firmware_android:dir { open read };
+allow misctrl sysfs_dt_firmware_android:file { getattr open read };
+
+# neverallow
+# allow system_suspend sysfs:file { getattr open read };
